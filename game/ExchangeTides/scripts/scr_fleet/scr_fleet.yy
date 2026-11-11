@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_fleet",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_fleet",
+  "parent":{
+    "name":"ExchangeTides",
+    "path":"ExchangeTides.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

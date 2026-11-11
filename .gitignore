@@ -1,0 +1,12 @@
+# Original Tradewinds 2 game and everything extracted from it: reference only, not ours to redistribute
+/Tradewinds 2/
+/Tradewinds.2.(Sandlot.Games)-WWW/
+/extracted/
+/re/
+/docs/tw2_playtest/
+# Build output and caches
+.gmcache/
+__pycache__/
+# Generated art variants and downloads (reproducible with tools/artgen/comfy_gen.py and tools/music.py)
+/tools/artgen/out/
+/tools/music_src/

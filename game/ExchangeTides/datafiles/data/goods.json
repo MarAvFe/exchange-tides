@@ -1,0 +1,13 @@
+[
+ {"id":"fish","name":"Salt Fish","min":10,"max":100,"inc":5,"range":50,"contraband":false,"start":true,"forsale":true,"desc":"Cheap and plentiful. Hungry ports pay a little more."},
+ {"id":"cotton","name":"Cotton Bales","min":10,"max":150,"inc":5,"range":100,"contraband":false,"start":true,"forsale":true,"desc":"Raw fibre from the inland fields, wanted by every loom-town."},
+ {"id":"timber","name":"Hardwood","min":50,"max":250,"inc":25,"range":150,"contraband":false,"start":true,"forsale":true,"desc":"Keel-grade timber. Shipyards cannot get enough."},
+ {"id":"cocoa","name":"Cocoa Beans","min":150,"max":600,"inc":25,"range":300,"contraband":false,"start":true,"forsale":true,"desc":"Bitter beans that turn into sweet profit."},
+ {"id":"sugar","name":"Cane Sugar","min":300,"max":1000,"inc":25,"range":500,"contraband":false,"start":true,"forsale":true,"desc":"White gold of the islands."},
+ {"id":"spice","name":"Spice Chests","min":600,"max":1800,"inc":50,"range":700,"contraband":false,"start":false,"forsale":true,"desc":"Pepper, clove and mace from distant traders."},
+ {"id":"arms","name":"Muskets","min":1000,"max":3000,"inc":25,"range":1000,"contraband":false,"start":false,"forsale":true,"desc":"Governors pay well. Pirates pay better."},
+ {"id":"textiles","name":"Fine Cloth","min":2000,"max":6000,"inc":50,"range":2000,"contraband":false,"start":false,"forsale":true,"desc":"Dyed silks and velvets for the wealthy."},
+ {"id":"tobacco","name":"Leaf Tobacco","min":3000,"max":8000,"inc":500,"range":3000,"contraband":true,"start":false,"forsale":true,"desc":"Taxed, banned, and adored. Prices double where it is outlawed."},
+ {"id":"wine","name":"Old-World Wine","min":5000,"max":10000,"inc":500,"range":3500,"contraband":true,"start":false,"forsale":true,"desc":"Casks smuggled past the customs men."},
+ {"id":"gem","name":"Gemstones","min":10000,"max":25000,"inc":3000,"range":15000,"contraband":false,"start":true,"forsale":false,"desc":"Never sold in markets, only bought from those who find them."}
+]

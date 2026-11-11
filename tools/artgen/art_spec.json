@@ -1,0 +1,1334 @@
+{
+ "style": "storybook illustration, painterly gouache and ink, confident brushwork, warm golden-hour key light, cool teal shadows, rich texture, golden age of sail, 18th century caribbean, masterpiece, highly detailed game art",
+ "negative": "photo, photorealistic, 3d render, cgi, anime, pixel art, text, letters, watermark, signature, logo, frame, border, blurry, lowres, jpeg artifacts, deformed, disfigured, extra fingers, extra limbs, bad anatomy, cropped head, modern clothing",
+ "sampler": {
+  "steps": 6,
+  "cfg": 2.0,
+  "sampler_name": "dpmpp_sde",
+  "scheduler": "karras"
+ },
+ "assets": [
+  {
+   "name": "portrait_vega",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 101,
+   "prompt": "head and shoulders portrait of a confident young latina woman sea captain, long dark wavy hair, black tricorn hat, gold hoop earring, teal brocade frock coat, determined smile, three-quarter view, warm brown painted backdrop"
+  },
+  {
+   "name": "portrait_wren",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 102,
+   "prompt": "head and shoulders portrait of a fair-skinned blond man in his thirties, stubble, former navy gunner turned merchant captain, navy blue officer coat with brass buttons, bicorne captain hat, wry squint, three-quarter view, slate blue painted backdrop"
+  },
+  {
+   "name": "portrait_calder",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 103,
+   "prompt": "head and shoulders portrait of a sly smuggler woman with tan skin, long black hair, dark red bandana, grey silk scarf, gold earring, worn brown leather coat, mischievous grin, three-quarter view, dusky violet painted backdrop"
+  },
+  {
+   "name": "portrait_bale",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 104,
+   "prompt": "head and shoulders portrait of a calm wise black man ship navigator, full short beard, patterned kerchief on head, mustard yellow coat, brass spyglass on shoulder strap, thoughtful gaze, three-quarter view, sea green painted backdrop"
+  },
+  {
+   "name": "portrait_grimmer",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 105,
+   "prompt": "head and shoulders portrait of a menacing elderly naval commodore villain, pale skin, grey hair, sharp grey moustache, cold piercing eyes, black tricorn hat with gold trim, black and gold admiral coat, epaulettes, cruel half smile, three-quarter view, dark crimson painted backdrop"
+  },
+  {
+   "name": "portrait_governor",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 106,
+   "prompt": "head and shoulders portrait of a pompous elderly colonial governor, white powdered wig, rosy cheeks, crimson velvet coat with gold embroidery, lace cravat, three-quarter view, golden ochre painted backdrop"
+  },
+  {
+   "name": "portrait_banker",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 107,
+   "prompt": "head and shoulders portrait of a precise middle-aged banker with brown skin, neat black hair, thin moustache, round spectacles, charcoal waistcoat and dark green coat, quill behind ear, three-quarter view, muted olive painted backdrop"
+  },
+  {
+   "name": "portrait_barkeep",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 108,
+   "prompt": "head and shoulders portrait of a cheerful sturdy tavern keeper woman, freckles, curly copper red hair, yellow neck scarf, rolled sleeves, brown apron, warm laugh, three-quarter view, warm amber tavern painted backdrop"
+  },
+  {
+   "name": "portrait_shipwright",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 109,
+   "prompt": "head and shoulders portrait of a burly shipwright craftsman, brown skin, bushy brown beard, kerchief on head, leather work vest over linen shirt, carpenter pencil behind ear, sawdust, three-quarter view, harbour blue painted backdrop"
+  },
+  {
+   "name": "portrait_lender",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 110,
+   "prompt": "head and shoulders portrait of a shrewd old moneylender, pale wrinkled skin, grey stubble, battered tricorn hat, plum purple coat, counting a gold coin, narrow calculating eyes, three-quarter view, deep purple candlelit painted backdrop"
+  },
+  {
+   "name": "portrait_merchant",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 111,
+   "prompt": "head and shoulders portrait of a jovial portly market merchant, olive skin, black curly hair, thick moustache, saffron and gold coat, ledger in hand, welcoming smile, three-quarter view, sunny marketplace green painted backdrop"
+  },
+  {
+   "name": "portrait_sailor",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 112,
+   "prompt": "head and shoulders portrait of a weathered old sailor with dark brown skin, white stubble, blue bandana, gold earring, faded blue striped shirt, pipe, kind crinkled eyes, three-quarter view, sea blue painted backdrop"
+  },
+  {
+   "name": "portrait_smuggler",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 113,
+   "prompt": "head and shoulders portrait of a shady hooded smuggler man, tan skin, black stubble, black bandana, red neck scarf pulled down, black leather coat, scar on cheek, wary glance, three-quarter view, dark smoky grey painted backdrop"
+  },
+  {
+   "name": "title",
+   "mode": "txt2img",
+   "size": [
+    1344,
+    768
+   ],
+   "seed": 201,
+   "prompt": "epic wide view of a three-masted merchant ship sailing at sunset across a turquoise caribbean sea, tropical islands with palm trees and a small harbour town, dramatic golden clouds, seagulls, empty sky in upper center for a title, cinematic composition"
+  },
+  {
+   "name": "worldmap",
+   "mode": "img2img",
+   "denoise": 0.55,
+   "scale": 1,
+   "seed": 301,
+   "prompt": "top-down hand painted antique sea chart of a tropical archipelago, turquoise shallows, deep blue ocean, green jungle islands with sandy beaches, parchment texture, subtle compass rose, no text"
+  },
+  {
+   "name": "fort",
+   "mode": "img2img",
+   "denoise": 0.7,
+   "scale": 4,
+   "seed": 401,
+   "keep_alpha": true,
+   "prompt": "stone coastal fort on a rocky outcrop with cannons and a flag, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_sloop",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 410,
+   "keep_alpha": true,
+   "prompt": "small single-mast sloop sailing ship, cream sails, warm wooden hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_schooner",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 411,
+   "keep_alpha": true,
+   "prompt": "two-mast schooner sailing ship, cream sails, warm wooden hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_brigantine",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 412,
+   "keep_alpha": true,
+   "prompt": "two-mast brigantine sailing ship, square and fore-aft sails, wooden hull with gun ports, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_barque",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 413,
+   "keep_alpha": true,
+   "prompt": "three-mast barque merchant sailing ship, cream sails, wooden hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_galleon",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 414,
+   "keep_alpha": true,
+   "prompt": "large ornate galleon sailing ship, tall stern castle, gilded carvings, cream sails, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_frigate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 415,
+   "keep_alpha": true,
+   "prompt": "sleek three-mast frigate warship, rows of gun ports, cream sails, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_manowar",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 416,
+   "keep_alpha": true,
+   "prompt": "massive ship of the line man-of-war, three gun decks, huge sails, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_sloop_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 420,
+   "keep_alpha": true,
+   "prompt": "pirate sloop, dark patched tattered sails, black hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_schooner_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 421,
+   "keep_alpha": true,
+   "prompt": "pirate schooner, dark patched tattered sails, black hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_brigantine_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 422,
+   "keep_alpha": true,
+   "prompt": "pirate brigantine, dark patched tattered sails, black hull with red trim, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_barque_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 423,
+   "keep_alpha": true,
+   "prompt": "pirate barque, dark patched tattered sails, black hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_galleon_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 424,
+   "keep_alpha": true,
+   "prompt": "captured pirate galleon, dark tattered sails, black and red hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_frigate_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 425,
+   "keep_alpha": true,
+   "prompt": "rogue pirate frigate, dark patched sails, black hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_manowar_pirate",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 426,
+   "keep_alpha": true,
+   "prompt": "dreaded pirate man-of-war, dark tattered sails, black hull, red trim, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_frigate_navy",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 427,
+   "keep_alpha": true,
+   "prompt": "royal navy frigate, crisp white sails, dark blue hull with gold trim, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "ship_raider",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 4,
+   "seed": 428,
+   "keep_alpha": true,
+   "prompt": "fast low smuggler raider ship, lateen sails, dark grey hull, side view, isolated",
+   "bg": "5E7E8A"
+  },
+  {
+   "name": "good_fish",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 501,
+   "keep_alpha": true,
+   "prompt": "game item icon, a pile of fresh silver fish, centered, isolated"
+  },
+  {
+   "name": "good_cotton",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 502,
+   "keep_alpha": true,
+   "prompt": "game item icon, a bundled bale of white cotton, centered, isolated"
+  },
+  {
+   "name": "good_timber",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 503,
+   "keep_alpha": true,
+   "prompt": "game item icon, stacked timber logs tied with rope, centered, isolated"
+  },
+  {
+   "name": "good_cocoa",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 504,
+   "keep_alpha": true,
+   "prompt": "game item icon, cocoa pods and beans in a sack, centered, isolated"
+  },
+  {
+   "name": "good_sugar",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 505,
+   "keep_alpha": true,
+   "prompt": "game item icon, a burlap sack of white sugar, centered, isolated"
+  },
+  {
+   "name": "good_arms",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 506,
+   "keep_alpha": true,
+   "prompt": "game item icon, crossed flintlock muskets and a cutlass, centered, isolated"
+  },
+  {
+   "name": "good_textiles",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 517,
+   "keep_alpha": true,
+   "prompt": "game item icon, three rolled bolts of fabric cloth, indigo blue, crimson and cream, tied with string, centered, isolated"
+  },
+  {
+   "name": "good_tobacco",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 508,
+   "keep_alpha": true,
+   "prompt": "game item icon, bundle of dried brown tobacco leaves, centered, isolated"
+  },
+  {
+   "name": "good_wine",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 509,
+   "keep_alpha": true,
+   "prompt": "game item icon, a wooden wine barrel and a dark glass bottle, centered, isolated"
+  },
+  {
+   "name": "good_gem",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 510,
+   "keep_alpha": true,
+   "prompt": "game item icon, a cluster of sparkling cut gemstones, emerald and ruby, centered, isolated"
+  },
+  {
+   "name": "good_spice",
+   "mode": "img2img",
+   "denoise": 0.75,
+   "scale": 8,
+   "seed": 521,
+   "keep_alpha": true,
+   "prompt": "game item icon, open burlap sack overflowing with orange and red spice powder, cinnamon sticks beside it, centered, isolated"
+  },
+  {
+   "name": "ui_parchment",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 601,
+   "prompt": "seamless flat texture of aged cream parchment paper, subtle fibres and faint watercolour stains, evenly lit, no objects, no text, top-down scan"
+  },
+  {
+   "name": "bld_tavern",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 700,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a cosy two-storey caribbean tavern with red tile roof, hanging barrel sign, warm glowing windows, timber balcony, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_bank",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 701,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a grand white stone colonial bank with columns and a triangular pediment, stone steps, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_governor",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 702,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a blue colonial governor's mansion with white trim, balconies, red flag on the roof, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_market",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 703,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "three open market stalls with striped red, blue and yellow awnings, crates of fruit and goods, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_shipyard",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 704,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a large wooden shipyard shed with a big open bay door, timber crane, ropes and planks, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_lender",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 705,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a tall narrow purple townhouse with a hanging gold coin sign, shuttered windows, slightly crooked, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "bld_curio",
+   "mode": "img2img",
+   "denoise": 0.68,
+   "scale": 3,
+   "seed": 706,
+   "keep_alpha": true,
+   "bg": "B9A77F",
+   "trim": 2,
+   "prompt": "a small round mystic curio shop hut with teal conical roof, star ornament, hanging lanterns, front view, isolated building, painted game asset"
+  },
+  {
+   "name": "port_saltmere",
+   "mode": "img2img",
+   "seed": 800,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, white salt pans and low dunes, bright sunny day, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_coralhaven",
+   "mode": "img2img",
+   "seed": 801,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, coral reefs and crystal shallows, palm-fringed white beach, gentle morning light, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_isla_brasa",
+   "mode": "img2img",
+   "seed": 802,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, a smoking volcano behind, dark volcanic rocks, warm orange sunset, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_kestrel_bay",
+   "mode": "img2img",
+   "seed": 803,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, stone harbour walls, naval dry docks and tall warship masts in the distance, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_lanterna",
+   "mode": "img2img",
+   "seed": 804,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, a tall lighthouse on a rocky headland, blue dusk with first stars, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_driftmoor",
+   "mode": "img2img",
+   "seed": 805,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, misty grey morning fog, fishing nets drying on poles, rocky shore, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_san_velo",
+   "mode": "img2img",
+   "seed": 806,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, green sugar cane fields on rolling hills, a white church bell tower far away, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_mangrove_key",
+   "mode": "img2img",
+   "seed": 807,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, dense mangrove forest with roots in the water, wooden stilt walkways, humid green light, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_ironreef",
+   "mode": "img2img",
+   "seed": 808,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, dark iron-grey cliffs, foundry chimneys with smoke in the distance, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_tidewell",
+   "mode": "img2img",
+   "seed": 809,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, lush green valley with a waterfall and stone wells, fresh daylight, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_puerto_ambar",
+   "mode": "img2img",
+   "seed": 810,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, warm amber evening light, old terracotta rooftops on far hills, glowing lanterns, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "port_blackwater_cay",
+   "mode": "img2img",
+   "seed": 811,
+   "prompt": "wide view of a tropical harbour seen from the water, harbour water and a wooden quay in the foreground, a wide open empty sandy town square across the middle ground, distant sea behind, dark murky water, shipwrecks and skull-shaped rocks, stormy purple sky, pirate hideout, sky with soft clouds, background plate",
+   "denoise": 0.82,
+   "scale": 1,
+   "ref": "port_template"
+  },
+  {
+   "name": "portrait_quill",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 131,
+   "out": [
+    160,
+    200
+   ],
+   "prompt": "head and shoulders portrait of a sharp-eyed woman in her thirties, ink-stained fingers, auburn hair pinned up under a small felt hat, spectacles pushed up, dark green merchant coat with brass buttons, quill behind the ear, wry smile, warm brown painted backdrop"
+  },
+  {
+   "name": "portrait_moreno",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 137,
+   "out": [
+    160,
+    200
+   ],
+   "prompt": "head and shoulders portrait of a weathered former pirate sea captain in his forties, short black beard with grey streaks, scar across the cheek, faded red bandana, battered leather coat, guarded expression, warm brown painted backdrop"
+  },
+  {
+   "name": "portrait_crowe",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 143,
+   "out": [
+    160,
+    200
+   ],
+   "prompt": "head and shoulders portrait of a sleek older merchant with slicked silver hair, thin moustache, high collar, black velvet coat with silver embroidery, gold pocket watch chain, calculating smile, warm brown painted backdrop"
+  },
+  {
+   "name": "portrait_hale",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 149,
+   "out": [
+    160,
+    200
+   ],
+   "prompt": "head and shoulders portrait of a stern young naval lieutenant woman, short dark hair, navy blue officer coat with white facings and gold epaulette, bicorne hat under arm, upright posture, warm brown painted backdrop"
+  },
+  {
+   "name": "portrait_varga",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "seed": 151,
+   "out": [
+    160,
+    200
+   ],
+   "prompt": "head and shoulders portrait of a cunning woman smuggler in her fifties, grey braid, hooded oilskin cloak, many rings, pipe in hand, knowing grin, lantern light, warm brown painted backdrop"
+  },
+  {
+   "name": "npc_plate_0",
+   "mode": "img2img",
+   "ref": "npc_plate_0",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.62,
+   "bg": "E0DED8",
+   "trim": 2,
+   "seed": 7001,
+   "prompt": "a softly painted portrait backdrop, smooth pale grey gradient with faint brush texture"
+  },
+  {
+   "name": "npc_hairback_long",
+   "mode": "img2img",
+   "ref": "npc_hairback_long",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7002,
+   "prompt": "long flowing hair seen from behind the shoulders, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hairback_tail",
+   "mode": "img2img",
+   "ref": "npc_hairback_tail",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7003,
+   "prompt": "long flowing hair seen from behind the shoulders, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_coat_coat",
+   "mode": "img2img",
+   "ref": "npc_coat_coat",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7004,
+   "prompt": "a period frock coat on shoulders, fabric folds and stitching, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_coat_naval",
+   "mode": "img2img",
+   "ref": "npc_coat_naval",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7005,
+   "prompt": "a period frock coat on shoulders, fabric folds and stitching, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_coat_vest",
+   "mode": "img2img",
+   "ref": "npc_coat_vest",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7006,
+   "prompt": "a period frock coat on shoulders, fabric folds and stitching, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_coat_apron",
+   "mode": "img2img",
+   "ref": "npc_coat_apron",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7007,
+   "prompt": "a period frock coat on shoulders, fabric folds and stitching, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_coat_robe",
+   "mode": "img2img",
+   "ref": "npc_coat_robe",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7008,
+   "prompt": "a period frock coat on shoulders, fabric folds and stitching, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_beard_full",
+   "mode": "img2img",
+   "ref": "npc_beard_full",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7013,
+   "prompt": "a beard of painted hair strands, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_beard_moustache",
+   "mode": "img2img",
+   "ref": "npc_beard_moustache",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7014,
+   "prompt": "a beard of painted hair strands, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_beard_goatee",
+   "mode": "img2img",
+   "ref": "npc_beard_goatee",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7015,
+   "prompt": "a beard of painted hair strands, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_beard_stubble",
+   "mode": "img2img",
+   "ref": "npc_beard_stubble",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7016,
+   "prompt": "a beard of painted hair strands, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hair_short",
+   "mode": "img2img",
+   "ref": "npc_hair_short",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7017,
+   "prompt": "a painted hairstyle with strands and highlights, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hair_swept",
+   "mode": "img2img",
+   "ref": "npc_hair_swept",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7018,
+   "prompt": "a painted hairstyle with strands and highlights, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hair_bun",
+   "mode": "img2img",
+   "ref": "npc_hair_bun",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7019,
+   "prompt": "a painted hairstyle with strands and highlights, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hair_curly",
+   "mode": "img2img",
+   "ref": "npc_hair_curly",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7020,
+   "prompt": "a painted hairstyle with strands and highlights, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hair_receding",
+   "mode": "img2img",
+   "ref": "npc_hair_receding",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7021,
+   "prompt": "a painted hairstyle with strands and highlights, monochrome pale grey, untextured neutral tone, soft painterly shading"
+  },
+  {
+   "name": "npc_hat_tricorn",
+   "mode": "img2img",
+   "ref": "npc_hat_tricorn",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7022,
+   "prompt": "a black tricorn pirate hat with gold trim, isolated"
+  },
+  {
+   "name": "npc_hat_bicorne",
+   "mode": "img2img",
+   "ref": "npc_hat_bicorne",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7023,
+   "prompt": "a navy blue naval bicorne hat with gold cockade, isolated"
+  },
+  {
+   "name": "npc_hat_bandana",
+   "mode": "img2img",
+   "ref": "npc_hat_bandana",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7024,
+   "prompt": "a cloth bandana headscarf, monochrome pale grey, untextured neutral tone, soft painterly shading, isolated"
+  },
+  {
+   "name": "npc_hat_wig",
+   "mode": "img2img",
+   "ref": "npc_hat_wig",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7025,
+   "prompt": "a powdered white periwig with curls, isolated"
+  },
+  {
+   "name": "npc_hat_cap",
+   "mode": "img2img",
+   "ref": "npc_hat_cap",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7026,
+   "prompt": "a cloth sailor cap, monochrome pale grey, untextured neutral tone, soft painterly shading, isolated"
+  },
+  {
+   "name": "npc_hat_widebrim",
+   "mode": "img2img",
+   "ref": "npc_hat_widebrim",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.7,
+   "bg": "F0E8DC",
+   "trim": 2,
+   "seed": 7027,
+   "prompt": "a wide brimmed felt hat, monochrome pale grey, untextured neutral tone, soft painterly shading, isolated"
+  },
+  {
+   "name": "npc_head_a_fair",
+   "mode": "img2img",
+   "ref": "npc_head_a_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7601,
+   "prompt": "painted head and neck of a calm person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_a_olive",
+   "mode": "img2img",
+   "ref": "npc_head_a_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7602,
+   "prompt": "painted head and neck of a calm person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_a_tan",
+   "mode": "img2img",
+   "ref": "npc_head_a_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7603,
+   "prompt": "painted head and neck of a calm person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_a_brown",
+   "mode": "img2img",
+   "ref": "npc_head_a_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7604,
+   "prompt": "painted head and neck of a calm person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_a_dark",
+   "mode": "img2img",
+   "ref": "npc_head_a_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7605,
+   "prompt": "painted head and neck of a calm person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_b_fair",
+   "mode": "img2img",
+   "ref": "npc_head_b_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7606,
+   "prompt": "painted head and neck of a cheerful smiling person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_b_olive",
+   "mode": "img2img",
+   "ref": "npc_head_b_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7607,
+   "prompt": "painted head and neck of a cheerful smiling person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_b_tan",
+   "mode": "img2img",
+   "ref": "npc_head_b_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7608,
+   "prompt": "painted head and neck of a cheerful smiling person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_b_brown",
+   "mode": "img2img",
+   "ref": "npc_head_b_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7609,
+   "prompt": "painted head and neck of a cheerful smiling person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_b_dark",
+   "mode": "img2img",
+   "ref": "npc_head_b_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7610,
+   "prompt": "painted head and neck of a cheerful smiling person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_c_fair",
+   "mode": "img2img",
+   "ref": "npc_head_c_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7611,
+   "prompt": "painted head and neck of a stern person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_c_olive",
+   "mode": "img2img",
+   "ref": "npc_head_c_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7612,
+   "prompt": "painted head and neck of a stern person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_c_tan",
+   "mode": "img2img",
+   "ref": "npc_head_c_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7613,
+   "prompt": "painted head and neck of a stern person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_c_brown",
+   "mode": "img2img",
+   "ref": "npc_head_c_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7614,
+   "prompt": "painted head and neck of a stern person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_c_dark",
+   "mode": "img2img",
+   "ref": "npc_head_c_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7615,
+   "prompt": "painted head and neck of a stern person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_d_fair",
+   "mode": "img2img",
+   "ref": "npc_head_d_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7616,
+   "prompt": "painted head and neck of a weathered older person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_d_olive",
+   "mode": "img2img",
+   "ref": "npc_head_d_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7617,
+   "prompt": "painted head and neck of a weathered older person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_d_tan",
+   "mode": "img2img",
+   "ref": "npc_head_d_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7618,
+   "prompt": "painted head and neck of a weathered older person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_d_brown",
+   "mode": "img2img",
+   "ref": "npc_head_d_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7619,
+   "prompt": "painted head and neck of a weathered older person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_d_dark",
+   "mode": "img2img",
+   "ref": "npc_head_d_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7620,
+   "prompt": "painted head and neck of a weathered older person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_e_fair",
+   "mode": "img2img",
+   "ref": "npc_head_e_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7621,
+   "prompt": "painted head and neck of a friendly smiling person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_e_olive",
+   "mode": "img2img",
+   "ref": "npc_head_e_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7622,
+   "prompt": "painted head and neck of a friendly smiling person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_e_tan",
+   "mode": "img2img",
+   "ref": "npc_head_e_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7623,
+   "prompt": "painted head and neck of a friendly smiling person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_e_brown",
+   "mode": "img2img",
+   "ref": "npc_head_e_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7624,
+   "prompt": "painted head and neck of a friendly smiling person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_e_dark",
+   "mode": "img2img",
+   "ref": "npc_head_e_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7625,
+   "prompt": "painted head and neck of a friendly smiling person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_f_fair",
+   "mode": "img2img",
+   "ref": "npc_head_f_fair",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7626,
+   "prompt": "painted head and neck of a stern serious person with fair skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_f_olive",
+   "mode": "img2img",
+   "ref": "npc_head_f_olive",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7627,
+   "prompt": "painted head and neck of a stern serious person with olive skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_f_tan",
+   "mode": "img2img",
+   "ref": "npc_head_f_tan",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7628,
+   "prompt": "painted head and neck of a stern serious person with tanned skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_f_brown",
+   "mode": "img2img",
+   "ref": "npc_head_f_brown",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7629,
+   "prompt": "painted head and neck of a stern serious person with brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "npc_head_f_dark",
+   "mode": "img2img",
+   "ref": "npc_head_f_dark",
+   "keep_alpha": true,
+   "scale": 2,
+   "denoise": 0.55,
+   "bg": "B9A77F",
+   "trim": 2,
+   "seed": 7630,
+   "prompt": "painted head and neck of a stern serious person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  }
+ ]
+}

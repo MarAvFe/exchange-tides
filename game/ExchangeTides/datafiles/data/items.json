@@ -1,0 +1,228 @@
+[
+ {
+  "id": "merchant_ledger",
+  "name": "Merchant's Ledger",
+  "kind": "perk",
+  "effect": "bank_interest(+50%)",
+  "desc": "Your mother's ledger. Bankers trust your numbers."
+ },
+ {
+  "id": "gunners_eye",
+  "name": "Gunner's Eye",
+  "kind": "perk",
+  "effect": "combat_player_accuracy(+15)",
+  "desc": "Twelve years on Admiralty gun decks."
+ },
+ {
+  "id": "false_papers",
+  "name": "False Papers",
+  "kind": "perk",
+  "effect": "contraband_seizure(10)",
+  "desc": "Customs men rarely look twice."
+ },
+ {
+  "id": "storm_glass",
+  "name": "Storm Glass",
+  "kind": "perk",
+  "effect": "sailing_storm_frequency(-50%)",
+  "desc": "Its crystals cloud before every squall."
+ },
+ {
+  "id": "lucky_compass",
+  "name": "Lucky Compass",
+  "kind": "curio",
+  "price": 15000,
+  "effect": "sailing_lost(+30)",
+  "desc": "Always points away from trouble. Mostly."
+ },
+ {
+  "id": "hex_doll",
+  "name": "Sailor's Hex Doll",
+  "kind": "curio",
+  "price": 40000,
+  "effect": "sailing_combat_frequency(-40%)",
+  "desc": "Pirates feel strangely uninterested in you."
+ },
+ {
+  "id": "brass_spyglass",
+  "name": "Brass Spyglass",
+  "kind": "curio",
+  "price": 25000,
+  "effect": "combat_player_accuracy(+10)",
+  "desc": "See the whites of their eyes."
+ },
+ {
+  "id": "silver_tongue",
+  "name": "Silver Tongue Charm",
+  "kind": "curio",
+  "price": 20000,
+  "effect": "moneylender_interest(-50%)",
+  "desc": "Moneylenders find you oddly charming."
+ },
+ {
+  "id": "golden_tankard",
+  "name": "Golden Tankard",
+  "kind": "curio",
+  "price": 12000,
+  "effect": "alehouse_tip_frequency(+50%);alehouse_drink_prices(-50%)",
+  "desc": "Barkeeps pour faster and talk more."
+ },
+ {
+  "id": "blind_eye",
+  "name": "Customs Blind Eye",
+  "kind": "curio",
+  "price": 250000,
+  "effect": "contraband_seizure(0)",
+  "desc": "A bribe that never stops working."
+ },
+ {
+  "id": "iron_ward",
+  "name": "Iron Ward Amulet",
+  "kind": "curio",
+  "price": 120000,
+  "effect": "ship_health(+20%)",
+  "desc": "Hulls hold together when they should not."
+ },
+ {
+  "id": "first_mate",
+  "name": "Seasoned First Mate",
+  "kind": "hire",
+  "price": 20000,
+  "months": 6,
+  "effect": "combat_speed(+25%)",
+  "desc": "Drills the gun crews hard."
+ },
+ {
+  "id": "navigator",
+  "name": "Island Navigator",
+  "kind": "hire",
+  "price": 8000,
+  "months": 4,
+  "effect": "sailing_storm_frequency(-50%);sailing_lost(+40)",
+  "desc": "Knows every squall-line by name."
+ },
+ {
+  "id": "informant",
+  "name": "Dockside Informant",
+  "kind": "hire",
+  "price": 6000,
+  "months": 4,
+  "effect": "alehouse_tip_frequency(100)",
+  "desc": "Always has a rumour ready."
+ },
+ {
+  "id": "sharpshooter",
+  "name": "Sharpshooter",
+  "kind": "hire",
+  "price": 15000,
+  "months": 6,
+  "effect": "combat_enemy_accuracy(-15)",
+  "desc": "Picks off enemy gunners before they fire."
+ },
+ {
+  "id": "reinforced_hull",
+  "name": "Reinforced Hull",
+  "kind": "upgrade",
+  "price": 15000,
+  "effect": "ship_health(+20%)",
+  "desc": "Oak doubling on the waterline."
+ },
+ {
+  "id": "extra_hold",
+  "name": "Expanded Hold",
+  "kind": "upgrade",
+  "price": 12000,
+  "effect": "ship_space(+20%)",
+  "desc": "Clever carpentry below decks."
+ },
+ {
+  "id": "fast_carriages",
+  "name": "Swivel Carriages",
+  "kind": "upgrade",
+  "price": 18000,
+  "effect": "combat_speed(+20%)",
+  "desc": "Guns reload faster."
+ },
+ {
+  "id": "sleek_hull",
+  "name": "Copper Sheathing",
+  "kind": "upgrade",
+  "price": 22000,
+  "effect": "sailing_combat_frequency(-25%)",
+  "desc": "Outrun what you cannot outgun."
+ },
+ {
+  "id": "sealed_letter",
+  "name": "Sealed Letter",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Wax seal of the Saltmere governor."
+ },
+ {
+  "id": "grimmer_map",
+  "name": "Grimmer's Chart",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Smudged lines lead to Blackwater Cay."
+ },
+ {
+  "id": "rescued_cartographer",
+  "name": "Rescued Cartographer",
+  "kind": "quest",
+  "effect": "sailing_storm_frequency(-30%)",
+  "desc": "Grateful, talkative and very good with charts."
+ },
+ {
+  "id": "quartermaster",
+  "name": "Quartermaster",
+  "kind": "hire",
+  "price": 9000,
+  "months": 4,
+  "effect": "ship_space(+20%)",
+  "desc": "Packs a hold like a puzzle box. More cargo fits in every ship."
+ },
+ {
+  "id": "master_gunner",
+  "name": "Master Gunner",
+  "kind": "hire",
+  "price": 16000,
+  "months": 4,
+  "effect": "combat_speed(+20%)",
+  "desc": "Drills every gun crew in the fleet. Cannons reload faster."
+ },
+ {
+  "id": "hagglers_tongue",
+  "name": "Haggler's Tongue",
+  "kind": "perk",
+  "effect": "trade_buy_mult(-6%);trade_sell_mult(+4%)",
+  "desc": "Every merchant in the Reach knows her. None of them like it."
+ },
+ {
+  "id": "old_colours",
+  "name": "Old Colours",
+  "kind": "perk",
+  "effect": "combat_enemy_accuracy(-12);sailing_combat_frequency(-15%)",
+  "desc": "Raiders hesitate before firing on a ship they once sailed beside."
+ },
+ {
+  "id": "crowe_ledger",
+  "name": "Crowe's Ledger",
+  "kind": "quest",
+  "effect": "trade_sell_mult(+3%)",
+  "desc": "Proof of Dimas Crowe's price-fixing. Merchants pay you a little more to keep quiet."
+ },
+ {
+  "id": "undertow_signals",
+  "name": "Undertow Signal Book",
+  "kind": "quest",
+  "effect": "combat_player_accuracy(+8)",
+  "desc": "Grimmer's flag signals. You know what his ships will do next."
+ },
+ {
+  "id": "admiralty_warrant",
+  "name": "Admiralty Warrant",
+  "kind": "quest",
+  "effect": "contraband_seizure(-50%)",
+  "desc": "Signed by Lieutenant Hale. Customs officers wave you through more often."
+ }
+]

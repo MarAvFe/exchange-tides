@@ -1,0 +1,454 @@
+{
+ "id": "grimmer_debt",
+ "title": "The Grimmer Debt",
+ "intro": "The Reach is strangling. Commodore Silas Grimmer, once the Admiralty's finest, now sells safe passage to the highest bidder and sinks the rest. Honest trade is dying. You have a small ship, a smaller purse, and a reputation still to make.",
+ "chapters": [
+  {
+   "id": "letters",
+   "title": "Letters of Credit",
+   "level": 0,
+   "vars": {
+    "p1": "other,has:governor"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "Captain {captain}! The Reach needs captains who can turn a profit without turning pirate. Carry this letter to the governor of {p1}. And bring a cargo of sugar: an empty hold makes a poor impression.",
+     "ok": "Consider it done."
+    },
+    {
+     "do": "get",
+     "item": "sealed_letter"
+    },
+    {
+     "do": "log",
+     "text": "Carry the sealed letter to the governor of {p1}, with 10 Cane Sugar in the hold."
+    },
+    {
+     "do": "goal",
+     "type": "have_good",
+     "good": "sugar",
+     "amount": 10,
+     "text": "Load 10 Cane Sugar."
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "governor",
+     "port": "{p1}",
+     "text": "Deliver the letter to the governor of {p1}."
+    },
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "A letter of credit from my old colleague, and a trader who keeps their word. Here is your fee, and a word of warning: Grimmer's raiders are growing bolder.",
+     "ok": "I'll keep my guns loaded."
+    },
+    {
+     "do": "give",
+     "item": "sealed_letter"
+    },
+    {
+     "do": "reward",
+     "cash": 5000
+    },
+    {
+     "do": "unlock_good",
+     "good": "spice"
+    },
+    {
+     "do": "log",
+     "text": "Letter delivered. Spice traders now deal with you."
+    }
+   ]
+  },
+  {
+   "id": "ledger",
+   "title": "Ledger and Lead",
+   "level": 1,
+   "vars": {
+    "p2": "other,has:tavern"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "The barkeep in {p2} hears everything that floats. Find out who is feeding Grimmer his targets.",
+     "ok": "I'll buy a round."
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "barkeep",
+     "port": "{p2}",
+     "building": "tavern",
+     "text": "Talk to the barkeep in {p2}."
+    },
+    {
+     "do": "say",
+     "npc": "barkeep",
+     "text": "Grimmer's eyes are everywhere, love. Merchants who fight back get left alone. Sink one of his raiders and the word gets round.",
+     "ok": "Then I'll sink one."
+    },
+    {
+     "do": "goal",
+     "type": "combat",
+     "wins": 1,
+     "text": "Win a sea battle against a raider."
+    },
+    {
+     "do": "say",
+     "npc": "sailor",
+     "text": "Saw your fight from the yardarm. If you want the Admiralty on your side, they need to see coin as well as cannon. Put some savings in a bank.",
+     "ok": "Coin and cannon. Got it."
+    },
+    {
+     "do": "goal",
+     "type": "deposit",
+     "amount": 10000,
+     "text": "Hold 10,000 in any bank."
+    },
+    {
+     "do": "reward",
+     "cash": 8000
+    },
+    {
+     "do": "unlock_good",
+     "good": "arms"
+    },
+    {
+     "do": "set_level",
+     "level": 2
+    },
+    {
+     "do": "log",
+     "text": "The Admiralty takes note. Musket contracts are open to you."
+    }
+   ]
+  },
+  {
+   "id": "crowe",
+   "title": "The Price Fixer",
+   "level": 2,
+   "vars": {
+    "p5": "other,has:market",
+    "p6": "other,new,has:tavern"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "crowe",
+     "text": "Captain {captain}. Dimas Crowe, of Crowe & Daughters. You have been selling under my prices. In the Reach we call that rude. Stay out of {p5}, and we'll stay friends.",
+     "ok": "We'll see."
+    },
+    {
+     "do": "log",
+     "text": "Dimas Crowe warned you away from {p5}. Naturally, you are going there."
+    },
+    {
+     "do": "goal",
+     "type": "deliver",
+     "good": "spice",
+     "amount": 20,
+     "port": "{p5}",
+     "text": "Break Crowe's grip: bring 20 Spice to {p5}."
+    },
+    {
+     "do": "take",
+     "good": "spice",
+     "amount": 20
+    },
+    {
+     "do": "say",
+     "npc": "merchant",
+     "text": "Spice at an honest price! Crowe has been squeezing us for years. They say his books are kept by a clerk who drinks in {p6}.",
+     "ok": "Then I'll buy the clerk a drink."
+    },
+    {
+     "do": "reward",
+     "cash": 6000
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "barkeep",
+     "port": "{p6}",
+     "building": "tavern",
+     "text": "Find Crowe's clerk in the tavern at {p6}."
+    },
+    {
+     "do": "say",
+     "npc": "barkeep",
+     "text": "The clerk? Passed out in the corner, love. Left this behind. Looks like somebody's second set of books.",
+     "ok": "Very careless of him."
+    },
+    {
+     "do": "get",
+     "item": "crowe_ledger"
+    },
+    {
+     "do": "goal",
+     "type": "networth",
+     "amount": 45000,
+     "text": "Grow your net worth to 45,000 while Crowe's prices collapse."
+    },
+    {
+     "do": "say",
+     "npc": "crowe",
+     "text": "You've made your point, captain. Grimmer paid me to keep the honest traders poor. I'm done with him. Ask the Admiralty about the fort at Mangrove Key.",
+     "ok": "Wise choice, Crowe."
+    },
+    {
+     "do": "log",
+     "text": "Crowe confessed that Grimmer bankrolled his price-fixing."
+    }
+   ]
+  },
+  {
+   "id": "cartographer",
+   "title": "The Cartographer",
+   "level": 2,
+   "vars": {
+    "p3": "other,has:shipyard",
+    "p4": "other,new"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "A shipwright in {p3} came begging for help. Something about a kidnapping. Go and hear her out.",
+     "ok": "On my way."
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "shipwright",
+     "port": "{p3}",
+     "building": "shipyard",
+     "text": "Visit the shipwright in {p3}."
+    },
+    {
+     "do": "say",
+     "npc": "shipwright",
+     "text": "They took my brother. He drew the only true chart of Grimmer's anchorage. A pirate brig is holding him off {p4}. Bring him home and the chart is yours.",
+     "ok": "I'll bring him back."
+    },
+    {
+     "do": "goal",
+     "type": "npccombat",
+     "enemy": "pirate_brigantine",
+     "port": "{p4}",
+     "text": "Defeat the pirate brig waiting off {p4}."
+    },
+    {
+     "do": "get",
+     "item": "rescued_cartographer"
+    },
+    {
+     "do": "get",
+     "item": "grimmer_map"
+    },
+    {
+     "do": "say",
+     "npc": "sailor",
+     "text": "Your passenger has been scribbling all night. He says Grimmer's lair is at Blackwater Cay, and that the Commodore sails a stolen Admiralty frigate.",
+     "ok": "Then we'll need a bigger ship."
+    },
+    {
+     "do": "reward",
+     "cash": 15000
+    },
+    {
+     "do": "unlock_good",
+     "good": "textiles"
+    },
+    {
+     "do": "unlock_good",
+     "good": "tobacco"
+    },
+    {
+     "do": "unlock_good",
+     "good": "wine"
+    },
+    {
+     "do": "set_level",
+     "level": 4
+    },
+    {
+     "do": "log",
+     "text": "Grimmer hides at Blackwater Cay. Every fine good is now open to trade."
+    }
+   ]
+  },
+  {
+   "id": "fort",
+   "title": "The Mangrove Fort",
+   "level": 4,
+   "vars": {
+    "p7": "other,has:governor"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "hale",
+     "text": "Lieutenant Ada Hale, Admiralty. Grimmer's men hold the old fort at Mangrove Key. Before I commit the fleet I need proof you can fight. Sink three of his raiders.",
+     "ok": "Three it is."
+    },
+    {
+     "do": "goal",
+     "type": "sink",
+     "n": 3,
+     "text": "Sink 3 raider ships for Lieutenant Hale."
+    },
+    {
+     "do": "say",
+     "npc": "hale",
+     "text": "Good shooting. The fort's guns cover the whole lagoon. Hit it with everything you have, and bring powder kegs if you can afford them.",
+     "ok": "Understood."
+    },
+    {
+     "do": "goal",
+     "type": "npccombat",
+     "enemy": "harbour_fort",
+     "port": "mangrove_key",
+     "text": "Silence the pirate fort at Mangrove Key."
+    },
+    {
+     "do": "get",
+     "item": "admiralty_warrant"
+    },
+    {
+     "do": "reward",
+     "cash": 25000
+    },
+    {
+     "do": "say",
+     "npc": "hale",
+     "text": "The lagoon is ours. Take this warrant. Report to the governor of {p7}; they have news of Grimmer.",
+     "ok": "On my way."
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "governor",
+     "port": "{p7}",
+     "text": "Report to the governor of {p7}."
+    },
+    {
+     "do": "set_level",
+     "level": 5
+    },
+    {
+     "do": "log",
+     "text": "The Mangrove fort has fallen. The Admiralty is watching you closely now."
+    }
+   ]
+  },
+  {
+   "id": "smoke",
+   "title": "Smoke and Signals",
+   "level": 5,
+   "vars": {
+    "p8": "other,has:tavern"
+   },
+   "steps": [
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "Grimmer's captains signal each other with flags. A smuggler named Nell Varga claims to have his signal book. She wants tobacco, delivered to Blackwater Cay, no questions asked.",
+     "ok": "No questions."
+    },
+    {
+     "do": "goal",
+     "type": "deliver",
+     "good": "tobacco",
+     "amount": 30,
+     "port": "blackwater_cay",
+     "text": "Smuggle 30 Tobacco to Blackwater Cay for Nell Varga."
+    },
+    {
+     "do": "take",
+     "good": "tobacco",
+     "amount": 30
+    },
+    {
+     "do": "say",
+     "npc": "varga",
+     "text": "Prompt, and nobody followed you. I like you, captain. The signal book is with my partner in {p8}. Mind Grimmer's wolves on the way: they know you're coming now.",
+     "ok": "Let them come."
+    },
+    {
+     "do": "goal",
+     "type": "combat",
+     "wins": 2,
+     "text": "Win 2 battles against Grimmer's wolves."
+    },
+    {
+     "do": "goal",
+     "type": "talk",
+     "npc": "smuggler",
+     "port": "{p8}",
+     "building": "tavern",
+     "text": "Collect the signal book from Varga's partner in {p8}."
+    },
+    {
+     "do": "get",
+     "item": "undertow_signals"
+    },
+    {
+     "do": "reward",
+     "cash": 20000
+    },
+    {
+     "do": "log",
+     "text": "With Grimmer's signal book, you'll know his ships' next move."
+    }
+   ]
+  },
+  {
+   "id": "undertow",
+   "title": "The Undertow",
+   "level": 6,
+   "vars": {},
+   "steps": [
+    {
+     "do": "say",
+     "npc": "governor",
+     "text": "Grimmer's frigate, the Undertow, carries fourteen guns and a crew of cutthroats. Gather a fortune for powder and repairs before you face him.",
+     "ok": "I'll be ready."
+    },
+    {
+     "do": "goal",
+     "type": "networth",
+     "amount": 250000,
+     "text": "Build a net worth of 250,000."
+    },
+    {
+     "do": "goal",
+     "type": "npccombat",
+     "enemy": "grimmer_flagship",
+     "port": "blackwater_cay",
+     "text": "Defeat Commodore Grimmer at Blackwater Cay."
+    },
+    {
+     "do": "say",
+     "npc": "grimmer",
+     "text": "You... a trader. Beaten by a ledger and a lucky broadside. The Reach will forget you, captain.",
+     "ok": "The Reach will trade freely. That is enough."
+    },
+    {
+     "do": "reward",
+     "cash": 100000
+    },
+    {
+     "do": "log",
+     "text": "Grimmer is defeated. The trade lanes are open."
+    },
+    {
+     "do": "end"
+    }
+   ]
+  }
+ ]
+}

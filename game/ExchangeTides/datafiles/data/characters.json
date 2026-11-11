@@ -1,0 +1,242 @@
+{
+ "captains": [
+  {
+   "id": "vega",
+   "name": "Marisol Vega",
+   "title": "Captain",
+   "portrait": "portrait_vega",
+   "bio": "Heir to a bankrupt trading house, out to restore the family name one cargo at a time.",
+   "port": "puerto_ambar",
+   "cash": 2000,
+   "bank": 0,
+   "debt": 0,
+   "ship": "sloop",
+   "ship_name": "Golden Wake",
+   "guns": 5,
+   "ammo": {
+    "firepot": 2,
+    "chains": 2
+   },
+   "perk": "merchant_ledger"
+  },
+  {
+   "id": "wren",
+   "name": "Tobias Wren",
+   "title": "Captain",
+   "portrait": "portrait_wren",
+   "bio": "Discharged Admiralty gunner. He shoots straight and sometimes thinks straight.",
+   "port": "kestrel_bay",
+   "cash": 1000,
+   "bank": 0,
+   "debt": 0,
+   "ship": "sloop",
+   "ship_name": "Stubborn Gull",
+   "guns": 6,
+   "ammo": {
+    "firepot": 2,
+    "chains": 4
+   },
+   "perk": "gunners_eye"
+  },
+  {
+   "id": "calder",
+   "name": "Ines 'Ash' Calder",
+   "title": "Captain",
+   "portrait": "portrait_calder",
+   "bio": "A smuggler with a debt, a grin, and a talent for paperwork.",
+   "port": "driftmoor",
+   "cash": 6000,
+   "bank": 0,
+   "debt": 3000,
+   "ship": "sloop",
+   "ship_name": "Quiet Ember",
+   "guns": 5,
+   "ammo": {
+    "firepot": 2,
+    "chains": 2
+   },
+   "perk": "false_papers"
+  },
+  {
+   "id": "bale",
+   "name": "Okoro Bale",
+   "title": "Captain",
+   "portrait": "portrait_bale",
+   "bio": "A navigator who reads weather the way priests read scripture.",
+   "port": "coralhaven",
+   "cash": 1500,
+   "bank": 0,
+   "debt": 0,
+   "ship": "sloop",
+   "ship_name": "Patient Heron",
+   "guns": 5,
+   "ammo": {
+    "firepot": 2,
+    "chains": 2
+   },
+   "perk": "storm_glass"
+  },
+  {
+   "id": "quill",
+   "name": "Hester Quill",
+   "title": "Captain",
+   "portrait": "portrait_quill",
+   "portrait_fallback": "portrait_merchant",
+   "bio": "A harbour clerk who learned every merchant's tricks by writing them down. Now she uses them.",
+   "port": "saltmere",
+   "cash": 3000,
+   "bank": 0,
+   "debt": 0,
+   "ship": "sloop",
+   "ship_name": "Inkwell",
+   "guns": 4,
+   "ammo": {
+    "firepot": 1,
+    "chains": 2
+   },
+   "perk": "hagglers_tongue"
+  },
+  {
+   "id": "moreno",
+   "name": "Rafe Moreno",
+   "title": "Captain",
+   "portrait": "portrait_moreno",
+   "portrait_fallback": "portrait_smuggler",
+   "bio": "Sailed under Grimmer's colours until he saw what they cost. Brings a schooner, a debt and a grudge.",
+   "port": "blackwater_cay",
+   "cash": 1500,
+   "bank": 0,
+   "debt": 12000,
+   "ship": "schooner",
+   "ship_name": "Turncoat",
+   "guns": 8,
+   "ammo": {
+    "firepot": 3,
+    "chains": 3
+   },
+   "perk": "old_colours"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "governor",
+   "name": "Governor",
+   "portrait": "portrait_governor"
+  },
+  {
+   "id": "banker",
+   "name": "Banker",
+   "portrait": "portrait_banker"
+  },
+  {
+   "id": "barkeep",
+   "name": "Barkeep",
+   "portrait": "portrait_barkeep"
+  },
+  {
+   "id": "shipwright",
+   "name": "Shipwright",
+   "portrait": "portrait_shipwright"
+  },
+  {
+   "id": "lender",
+   "name": "Moneylender",
+   "portrait": "portrait_lender"
+  },
+  {
+   "id": "merchant",
+   "name": "Merchant",
+   "portrait": "portrait_merchant"
+  },
+  {
+   "id": "sailor",
+   "name": "Old Sailor",
+   "portrait": "portrait_sailor"
+  },
+  {
+   "id": "smuggler",
+   "name": "Smuggler",
+   "portrait": "portrait_smuggler"
+  },
+  {
+   "id": "curio",
+   "name": "Curio Dealer",
+   "portrait": "portrait_smuggler"
+  },
+  {
+   "id": "grimmer",
+   "name": "Commodore Silas Grimmer",
+   "portrait": "portrait_grimmer"
+  },
+  {
+   "id": "crowe",
+   "name": "Dimas Crowe",
+   "portrait": "portrait_crowe",
+   "portrait_fallback": "portrait_merchant"
+  },
+  {
+   "id": "hale",
+   "name": "Lieutenant Ada Hale",
+   "portrait": "portrait_hale",
+   "portrait_fallback": "portrait_wren"
+  },
+  {
+   "id": "varga",
+   "name": "Nell Varga",
+   "portrait": "portrait_varga",
+   "portrait_fallback": "portrait_smuggler"
+  }
+ ],
+ "governors": {
+  "saltmere": {
+   "name": "Governor Aldous Pike",
+   "greeting": "\"Salt keeps meat, captain, and contracts keep colonies. I have both in need of moving.\"",
+   "female": false
+  },
+  "coralhaven": {
+   "name": "Governor Imelda Reyes",
+   "greeting": "\"Coralhaven is small, so we remember who helps us. And who doesn't.\"",
+   "female": true
+  },
+  "isla_brasa": {
+   "name": "Governor Tomas Fierro",
+   "greeting": "\"The mountain smokes, the market shouts, and I sign papers. Make yourself useful.\"",
+   "female": false
+  },
+  "kestrel_bay": {
+   "name": "Commodore-Governor Hugh Ashby",
+   "greeting": "\"The Admiralty yards build the ships. Captains like you keep them busy.\"",
+   "female": false
+  },
+  "lanterna": {
+   "name": "Governor Celeste Moreau",
+   "greeting": "\"The lighthouse never sleeps, and neither does trade. What can Lanterna offer you?\"",
+   "female": true
+  },
+  "driftmoor": {
+   "name": "Reeve Agnes Holloway",
+   "greeting": "\"Fog's thick today. Business is thicker, if you've the stomach for it.\"",
+   "female": true
+  },
+  "san_velo": {
+   "name": "Governor Bartolo Cruz",
+   "greeting": "\"The friars pray for honest traders. I pay them. Usually more promptly.\"",
+   "female": false
+  },
+  "ironreef": {
+   "name": "Governor Magnus Thorne",
+   "greeting": "\"Ironreef forges cannon for half the Reach. Somebody has to deliver them.\"",
+   "female": false
+  },
+  "tidewell": {
+   "name": "Governor Liesl Vann",
+   "greeting": "\"Every ship in the Reach drinks from our wells. Every ship owes us a favour.\"",
+   "female": true
+  },
+  "puerto_ambar": {
+   "name": "Governor Rosa Ambrell",
+   "greeting": "\"My family built half these docks. I would like to see them busy again.\"",
+   "female": true
+  }
+ }
+}

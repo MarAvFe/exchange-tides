@@ -1,0 +1,180 @@
+[
+ {
+  "id": "saltmere",
+  "name": "Port Saltmere",
+  "x": 254,
+  "y": 190,
+  "buildings": [
+   "market",
+   "bank",
+   "lender",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "A busy harbour of salt pans and gossip.",
+  "lawless": false
+ },
+ {
+  "id": "coralhaven",
+  "name": "Coralhaven",
+  "x": 534,
+  "y": 110,
+  "buildings": [
+   "market",
+   "tavern",
+   "governor",
+   "curio"
+  ],
+  "desc": "Reef-ringed and quiet, its divers trade in secrets.",
+  "lawless": false
+ },
+ {
+  "id": "isla_brasa",
+  "name": "Isla Brasa",
+  "x": 706,
+  "y": 298,
+  "buildings": [
+   "market",
+   "bank",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Volcanic slopes, hot tempers, hotter markets.",
+  "lawless": false
+ },
+ {
+  "id": "kestrel_bay",
+  "name": "Kestrel Bay",
+  "x": 1010,
+  "y": 166,
+  "buildings": [
+   "market",
+   "lender",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Home of the Admiralty yards.",
+  "lawless": false
+ },
+ {
+  "id": "lanterna",
+  "name": "Lanterna",
+  "x": 1170,
+  "y": 382,
+  "buildings": [
+   "market",
+   "bank",
+   "tavern",
+   "governor",
+   "curio"
+  ],
+  "desc": "The lighthouse city that never sleeps.",
+  "lawless": false
+ },
+ {
+  "id": "driftmoor",
+  "name": "Driftmoor",
+  "x": 126,
+  "y": 422,
+  "buildings": [
+   "market",
+   "lender",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Fog, nets, and fishermen who ask no questions.",
+  "lawless": false
+ },
+ {
+  "id": "san_velo",
+  "name": "San Velo",
+  "x": 450,
+  "y": 414,
+  "buildings": [
+   "market",
+   "bank",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Sails, sermons and sugar.",
+  "lawless": false
+ },
+ {
+  "id": "mangrove_key",
+  "name": "Mangrove Key",
+  "x": 650,
+  "y": 494,
+  "buildings": [
+   "market",
+   "tavern",
+   "curio"
+  ],
+  "desc": "A stilt town in the mangroves.",
+  "lawless": false
+ },
+ {
+  "id": "ironreef",
+  "name": "Ironreef",
+  "x": 886,
+  "y": 430,
+  "buildings": [
+   "market",
+   "bank",
+   "lender",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Foundries and gun-smiths line the docks.",
+  "lawless": false
+ },
+ {
+  "id": "tidewell",
+  "name": "Tidewell",
+  "x": 1062,
+  "y": 622,
+  "buildings": [
+   "market",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Wells of sweet water draw every passing ship.",
+  "lawless": false
+ },
+ {
+  "id": "puerto_ambar",
+  "name": "Puerto Ambar",
+  "x": 338,
+  "y": 638,
+  "buildings": [
+   "market",
+   "bank",
+   "lender",
+   "shipyard",
+   "tavern",
+   "governor"
+  ],
+  "desc": "Amber lanterns and old merchant houses.",
+  "lawless": false
+ },
+ {
+  "id": "blackwater_cay",
+  "name": "Blackwater Cay",
+  "x": 790,
+  "y": 658,
+  "buildings": [
+   "market",
+   "lender",
+   "shipyard",
+   "tavern",
+   "curio"
+  ],
+  "desc": "No flag flies here. Mind your purse.",
+  "lawless": true
+ }
+]

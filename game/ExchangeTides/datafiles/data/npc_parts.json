@@ -1,0 +1,468 @@
+{
+ "_doc": "Trait tables for generated townsfolk (scr_npc). Each port's role (banker, barkeep...) is rolled once per save from these tables and kept. Sprites: sprites/npc_<layer>_<variant>.png, all 320x400 on one shared frame (tools/artgen/npcparts.py).",
+ "heads": [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f"
+ ],
+ "skins": [
+  "fair",
+  "olive",
+  "tan",
+  "brown",
+  "dark"
+ ],
+ "coats": [
+  "coat",
+  "naval",
+  "vest",
+  "apron",
+  "robe"
+ ],
+ "collars": [
+  "v",
+  "cravat",
+  "ruff",
+  "scarf"
+ ],
+ "hairs": [
+  "short",
+  "swept",
+  "bun",
+  "curly",
+  "receding"
+ ],
+ "hairbacks": [
+  "long",
+  "tail"
+ ],
+ "beards": [
+  "full",
+  "moustache",
+  "goatee",
+  "stubble"
+ ],
+ "hats": [
+  "tricorn",
+  "bicorne",
+  "bandana",
+  "wig",
+  "cap",
+  "widebrim"
+ ],
+ "hats_tinted": [
+  "bandana",
+  "cap",
+  "widebrim"
+ ],
+ "hats_hide_hair": [
+  "tricorn",
+  "bicorne",
+  "wig"
+ ],
+ "accs": [
+  "earring",
+  "eyepatch",
+  "spectacles",
+  "pipe",
+  "scar"
+ ],
+ "hair_colours": [
+  [
+   58,
+   42,
+   34
+  ],
+  [
+   30,
+   26,
+   26
+  ],
+  [
+   116,
+   78,
+   48
+  ],
+  [
+   182,
+   132,
+   72
+  ],
+  [
+   150,
+   62,
+   40
+  ],
+  [
+   208,
+   206,
+   200
+  ],
+  [
+   126,
+   120,
+   114
+  ]
+ ],
+ "cloth_colours": [
+  [
+   70,
+   92,
+   140
+  ],
+  [
+   140,
+   52,
+   50
+  ],
+  [
+   62,
+   110,
+   82
+  ],
+  [
+   122,
+   92,
+   62
+  ],
+  [
+   92,
+   72,
+   112
+  ],
+  [
+   198,
+   178,
+   128
+  ],
+  [
+   62,
+   62,
+   68
+  ],
+  [
+   40,
+   70,
+   90
+  ],
+  [
+   150,
+   110,
+   60
+  ]
+ ],
+ "bg_colours": [
+  [
+   110,
+   140,
+   170
+  ],
+  [
+   162,
+   122,
+   92
+  ],
+  [
+   112,
+   140,
+   112
+  ],
+  [
+   150,
+   112,
+   132
+  ],
+  [
+   170,
+   150,
+   110
+  ],
+  [
+   120,
+   120,
+   140
+  ]
+ ],
+ "roles": {
+  "governor": {
+   "title": "Governor",
+   "coats": [
+    "coat",
+    "naval"
+   ],
+   "collars": [
+    "ruff",
+    "cravat"
+   ],
+   "hats": [
+    "wig",
+    "bicorne",
+    "",
+    ""
+   ],
+   "accs": [
+    "",
+    "",
+    "spectacles"
+   ]
+  },
+  "banker": {
+   "title": "Banker",
+   "coats": [
+    "vest",
+    "coat"
+   ],
+   "collars": [
+    "cravat",
+    "v"
+   ],
+   "hats": [
+    "",
+    "",
+    "widebrim"
+   ],
+   "accs": [
+    "spectacles",
+    "spectacles",
+    ""
+   ]
+  },
+  "lender": {
+   "title": "Moneylender",
+   "coats": [
+    "robe",
+    "vest"
+   ],
+   "collars": [
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "widebrim",
+    "cap"
+   ],
+   "accs": [
+    "",
+    "spectacles",
+    "pipe",
+    "earring"
+   ]
+  },
+  "barkeep": {
+   "title": "Barkeep",
+   "coats": [
+    "apron",
+    "vest"
+   ],
+   "collars": [
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "",
+    "bandana",
+    "cap"
+   ],
+   "accs": [
+    "",
+    "",
+    "earring",
+    "scar"
+   ]
+  },
+  "shipwright": {
+   "title": "Shipwright",
+   "coats": [
+    "apron",
+    "vest",
+    "robe"
+   ],
+   "collars": [
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "cap",
+    "bandana"
+   ],
+   "accs": [
+    "",
+    "pipe",
+    "scar"
+   ]
+  },
+  "merchant": {
+   "title": "Merchant",
+   "coats": [
+    "coat",
+    "vest"
+   ],
+   "collars": [
+    "cravat",
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "widebrim",
+    "tricorn"
+   ],
+   "accs": [
+    "",
+    "",
+    "earring",
+    "spectacles"
+   ]
+  },
+  "curio": {
+   "title": "Curio Dealer",
+   "coats": [
+    "robe",
+    "coat"
+   ],
+   "collars": [
+    "scarf",
+    "v"
+   ],
+   "hats": [
+    "widebrim",
+    "bandana",
+    ""
+   ],
+   "accs": [
+    "eyepatch",
+    "earring",
+    "pipe",
+    ""
+   ]
+  },
+  "crew": {
+   "title": "Sailor",
+   "coats": [
+    "vest",
+    "apron",
+    "coat"
+   ],
+   "collars": [
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "bandana",
+    "cap",
+    "tricorn",
+    ""
+   ],
+   "accs": [
+    "",
+    "earring",
+    "scar",
+    "pipe",
+    "eyepatch",
+    ""
+   ]
+  },
+  "passenger": {
+   "title": "Passenger",
+   "coats": [
+    "coat",
+    "robe",
+    "vest"
+   ],
+   "collars": [
+    "cravat",
+    "ruff",
+    "v",
+    "scarf"
+   ],
+   "hats": [
+    "",
+    "widebrim",
+    "wig",
+    ""
+   ],
+   "accs": [
+    "",
+    "spectacles",
+    ""
+   ]
+  }
+ },
+ "first_f": [
+  "Ines",
+  "Marguerite",
+  "Abena",
+  "Liesl",
+  "Rosa",
+  "Agnes",
+  "Celeste",
+  "Isabela",
+  "Nell",
+  "Odile",
+  "Yara",
+  "Tamsin",
+  "Lucia",
+  "Hester",
+  "Imani",
+  "Greta",
+  "Pilar",
+  "Esme",
+  "Josefa",
+  "Maren"
+ ],
+ "first_m": [
+  "Tomas",
+  "Aldous",
+  "Kwame",
+  "Bartolo",
+  "Hugh",
+  "Magnus",
+  "Joaquin",
+  "Silas",
+  "Elias",
+  "Fergus",
+  "Mateo",
+  "Obi",
+  "Pieter",
+  "Rafael",
+  "Ansel",
+  "Duarte",
+  "Callum",
+  "Ignatius",
+  "Benedek",
+  "Laurent"
+ ],
+ "last": [
+  "Marrow",
+  "Quell",
+  "Ashdown",
+  "Ferreira",
+  "Okafor",
+  "Lindqvist",
+  "Brandt",
+  "Castell",
+  "Duvall",
+  "Hollis",
+  "Mbeki",
+  "Navarro",
+  "Pell",
+  "Rook",
+  "Salazar",
+  "Thorne",
+  "Vance",
+  "Whitlock",
+  "Ybarra",
+  "Zeller",
+  "Cardona",
+  "Haverly",
+  "Osei",
+  "Prentice"
+ ]
+}

@@ -1,0 +1,74 @@
+[
+ {
+  "id": "saltmere",
+  "name": "Port Saltmere",
+  "x": 250,
+  "y": 210
+ },
+ {
+  "id": "coralhaven",
+  "name": "Coralhaven",
+  "x": 470,
+  "y": 140
+ },
+ {
+  "id": "isla_brasa",
+  "name": "Isla Brasa",
+  "x": 700,
+  "y": 190
+ },
+ {
+  "id": "kestrel_bay",
+  "name": "Kestrel Bay",
+  "x": 960,
+  "y": 150
+ },
+ {
+  "id": "lanterna",
+  "name": "Lanterna",
+  "x": 1130,
+  "y": 300
+ },
+ {
+  "id": "driftmoor",
+  "name": "Driftmoor",
+  "x": 160,
+  "y": 430
+ },
+ {
+  "id": "san_velo",
+  "name": "San Velo",
+  "x": 420,
+  "y": 370
+ },
+ {
+  "id": "mangrove_key",
+  "name": "Mangrove Key",
+  "x": 650,
+  "y": 430
+ },
+ {
+  "id": "ironreef",
+  "name": "Ironreef",
+  "x": 880,
+  "y": 380
+ },
+ {
+  "id": "tidewell",
+  "name": "Tidewell",
+  "x": 1060,
+  "y": 520
+ },
+ {
+  "id": "puerto_ambar",
+  "name": "Puerto Ambar",
+  "x": 330,
+  "y": 600
+ },
+ {
+  "id": "blackwater_cay",
+  "name": "Blackwater Cay",
+  "x": 760,
+  "y": 610
+ }
+]

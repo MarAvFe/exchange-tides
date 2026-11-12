@@ -123,3 +123,31 @@ layers the first time you meet them, then stored in the save (`G.npcs["<port>|<r
 - Preview random combinations: `python3 -I tools/artgen/npc_preview.py out.png [parts_dir]`.
 - A new role: add it under `roles` in `npc_parts.json`; campaign `say` steps and building headers with that npc id
   then show the local person.
+
+## Themes
+`scr_theme` holds every colour, texture and frame setting in `global.THEME`; UI code reads them through the
+`UI_INK`, `UI_MUTED`, `UI_ACCENT`, `UI_GOOD`, `UI_BAD`, `UI_WARN` macros, so never hard-code text colours. Panels
+are tiled textures (`sprites/tex_*.png`) inside `theme_frame`; portraits get `ui_portrait_frame`. Add a theme as
+another case in `theme_make`.
+
+## Ship damage sprites
+`<ship>_d1/_d2/_d3.png` are shown at 80% / 50% / 25% hull (`ship_sprite_hp`). Regenerate them with
+`python3 -I tools/artgen/damage.py` after changing a ship sprite (it uses the painted pass in `tools/artgen/out/`
+when present).
+
+## Closed ports, shop stock
+- `characters.json → captains[].closed_ports` (+ `closed_reason`): ports hidden and unreachable for that captain in
+  the campaign (free mode opens everything). Never close a captain's start port or a port the campaign names.
+- Shipyards (`yard_stock`) and taverns (`tavern_stock`) each offer a small rotating selection per port,
+  restocked every other month.
+
+## Translations
+All code and data are written in English; `datafiles/data/lang/<code>.json` maps each English text to its
+translation. Spanish (`es`) is the default language; players switch in **Settings** on the title screen.
+- Fixed texts passed to `ui_text`, `ui_text_box`, `ui_button`, `ui_toast` and dialogs are translated
+  automatically. For texts with values inside, use a template: `trf("Sail to {0}  (1 week)", name)`;
+  plurals: `trn(n, "{0} ship", "{0} ships")`.
+- Data text fields (`name`, `desc`, `title`, `text`, `bio`, `greeting`...; see `I18N_DATA_FIELDS` in
+  `scr_i18n.gml`) are translated when the data loads. Ids are never translated.
+- Women's titles: add a `"Captain|f"` entry next to `"Captain"`; characters with `"female": true` use it.
+- After adding text, run `python3 tools/i18n_check.py es` to list what still needs translating.

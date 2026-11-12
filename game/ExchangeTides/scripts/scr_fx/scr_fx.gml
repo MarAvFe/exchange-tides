@@ -34,6 +34,17 @@ function fx_hit(_x, _y, _ammo, _sc) {
 	repeat (2 + _n) fx_smoke(_x + random_range(-10, 10), _y - 6, _sc * (_hot ? 1.4 : 1));
 }
 
+/// A hit on a ship: a few splinters and spent balls drop straight down and splash at the waterline
+/// (the hull itself stays still).
+function fx_plunk(_x, _y, _water, _sc) {
+	var C = global.C;
+	repeat (2 + irandom(2)) {
+		if (array_length(C.parts) > 900) return;
+		array_push(C.parts, { k: "plunk", x: _x + random_range(-30, 30) * _sc, y: _y + random_range(-6, 6), vx: 0, vy: random_range(10, 60),
+			t: 0, life: 3, s: random_range(2.5, 4) * _sc, c: choose(make_colour_rgb(30, 28, 26), make_colour_rgb(90, 62, 38)), r: 0, wy: _water + random_range(-4, 6), sc: _sc });
+	}
+}
+
 function fx_flame(_x, _y, _sc) {
 	fx_add("flame", _x, _y, random_range(-12, 12), random_range(-70, -30) * _sc, random_range(0.3, 0.6), random_range(5, 9) * _sc, choose(make_colour_rgb(255, 190, 70), make_colour_rgb(255, 120, 40), make_colour_rgb(240, 80, 30)));
 }
@@ -57,6 +68,11 @@ function fx_update(_dt) {
 		p.t += _dt;
 		if (p.t >= p.life) { array_delete(P, i, 1); continue; }
 		p.x += p.vx * _dt; p.y += p.vy * _dt;
+		if (p.k == "plunk") {
+			p.vy += 650 * _dt;
+			if (p.y >= p.wy) { array_delete(P, i, 1); fx_splash(p.x, p.wy, p.sc * 0.45); }
+			continue;
+		}
 		switch (p.k) {
 			case "spark": p.vy += 420 * _dt; p.vx *= 0.96; break;
 			case "chip": p.vy += 600 * _dt; p.r += 600 * _dt; break;
@@ -84,6 +100,9 @@ function fx_draw() {
 				break;
 			case "drop":
 				draw_set_alpha(0.9 * (1 - k)); draw_set_colour(p.c); draw_circle(p.x, p.y, p.s, false);
+				break;
+			case "plunk":
+				draw_set_alpha(1); draw_set_colour(p.c); draw_circle(p.x, p.y, p.s, false);
 				break;
 			case "ring":
 				draw_set_alpha(0.6 * (1 - k)); draw_set_colour(p.c);

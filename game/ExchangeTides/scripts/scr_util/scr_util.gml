@@ -109,11 +109,17 @@ function month_name(_t) {
 	return _m[_mo mod 12] + " " + string(global.D.config.start_year + (_mo div 12));
 }
 
+/// Last week of the month that week _t falls in.
+function month_end(_t) { return (_t div WEEKS_PER_MONTH) * WEEKS_PER_MONTH + WEEKS_PER_MONTH - 1; }
+
 /// "Week 2, March 1702"
-function date_name(_t) { return "Week " + string((_t mod WEEKS_PER_MONTH) + 1) + ", " + month_name(_t); }
+function date_name(_t) { return trf("Week {0}, {1}", (_t mod WEEKS_PER_MONTH) + 1, month_name(_t)); }
 
 /// Fits text into a width by shrinking the scale (never grows).
 function fit_scale(_s, _scale, _maxw) {
 	var _w = ui_text_width(_s, _scale);
 	return (_w > _maxw && _w > 0) ? _scale * _maxw / _w : _scale;
 }
+
+/// Debug trace that survives a hang or crash (appends to dbg.log in the save folder).
+function dbg(_s) { var f = file_text_open_append("dbg.log"); file_text_write_string(f, string(current_time) + " " + string(_s)); file_text_writeln(f); file_text_close(f); }

@@ -1,5 +1,5 @@
 {
- "_doc": "Trait tables for generated townsfolk (scr_npc). Each port's role (banker, barkeep...) is rolled once per save from these tables and kept. Sprites: sprites/npc_<layer>_<variant>.png, all 320x400 on one shared frame (tools/artgen/npcparts.py).",
+ "_doc": "Trait tables for generated townsfolk (scr_npc). Each port's role (banker, barkeep...) is rolled once per save from these tables and kept. Sprites: sprites/npc_<layer>_<variant>.png, all 320x400 on one shared frame (tools/artgen/npcparts.py). plates: painted backdrops npc_plate_<n> (0 = neutral, tinted by bg colour; others are scenes, lightly tinted).",
  "heads": [
   "a",
   "b",
@@ -464,5 +464,16 @@
   "Haverly",
   "Osei",
   "Prentice"
+ ],
+ "plates": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
  ]
 }

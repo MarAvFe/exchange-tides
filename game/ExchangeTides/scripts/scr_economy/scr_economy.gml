@@ -110,7 +110,7 @@ function economy_month_tick() {
 		if (_it.months > 0) {
 			_it.months -= 1;
 			if (_it.months <= 0) {
-				log_add(variable_struct_get(global.D.items, _it.id).name + "'s contract has ended.");
+				log_add(trf("{0}'s contract has ended.", variable_struct_get(global.D.items, _it.id).name));
 				array_delete(G.items, i, 1);
 			}
 		}
@@ -157,8 +157,8 @@ function cargo_remove(_gid, _qty) {
 }
 
 function buy_price(_gid) { return max(1, round(price_at(global.G.port, _gid) * eff("trade_buy_mult", 1))); }
-/// Never above the buy price in the same market (perks could otherwise make buy-then-sell a money loop).
-function sell_price(_gid) { return min(buy_price(_gid), round(price_at(global.G.port, _gid) * eff("trade_sell_mult", 1))); }
+/// Sellers pay 2% under the asking price, and never more than it (perks could otherwise make buy-then-sell a money loop).
+function sell_price(_gid) { var _b = buy_price(_gid); return max(1, min(_b - (_b > 1), floor(price_at(global.G.port, _gid) * 0.98 * eff("trade_sell_mult", 1)))); }
 
 function market_buy(_gid, _qty) {
 	var G = global.G;
@@ -197,10 +197,10 @@ function customs_check() {
 			var _q = cargo_qty(_gid);
 			cargo_remove(_gid, _q);
 			var _nm = variable_struct_get(global.D.goods, _gid).name;
-			ui_message("Customs!", "The harbour authority found " + string(_q) + " " + _nm + " in your hold. It is outlawed here this month and has been seized.", "portrait_governor");
-			log_add("Customs in " + _port.name + " seized " + string(_q) + " " + _nm + ".");
+			ui_message(tr("Customs!"), trf("The harbour authority found {0} {1} in your hold. It is outlawed here this month and has been seized.", _q, _nm), "portrait_governor");
+			log_add(trf("Customs in {0} seized {1} {2}.", _port.name, _q, _nm));
 		} else {
-			log_add("Slipped " + variable_struct_get(global.D.goods, _gid).name + " past the customs men in " + _port.name + ".");
+			log_add(trf("Slipped {0} past the customs men in {1}.", variable_struct_get(global.D.goods, _gid).name, _port.name));
 		}
 	}
 }
@@ -221,7 +221,8 @@ function net_worth() {
 
 function max_loan() {
 	var G = global.G;
-	var _cap = max(global.D.config.moneylender_min_loan, (net_worth() + G.debt) * eff("moneylender_max_loan", global.D.config.moneylender_max_loan_mult));
+	// Credit is a multiple of what you are worth after debts, so borrowing never raises your own limit.
+	var _cap = max(global.D.config.moneylender_min_loan, net_worth() * eff("moneylender_max_loan", global.D.config.moneylender_max_loan_mult));
 	return max(0, floor(_cap - G.debt));
 }
 
@@ -249,15 +250,16 @@ function tavern_drink() {
 			var gs = variable_struct_get(G.goods, g.id);
 			var _names = "";
 			for (var i = 0; i < array_length(gs.contra_next); i++) {
-				_names += (i > 0 ? " and " : "") + variable_struct_get(D.ports, gs.contra_next[i]).name;
+				_names += (i > 0 ? tr(" and ") : "") + variable_struct_get(D.ports, gs.contra_next[i]).name;   // (closed ports may be named: it is still news)
 			}
-			var _t = "Word is " + g.name + " will be outlawed in " + _names + " in " + month_name((G.t div WEEKS_PER_MONTH + 1) * WEEKS_PER_MONTH) + ". Smugglers will pay double there.";
-			log_add("Tip: " + _t);
+			var _t = trf("Word is {0} will be outlawed in {1} in {2}. Smugglers will pay double there.", g.name, _names, month_name((G.t div WEEKS_PER_MONTH + 1) * WEEKS_PER_MONTH));
+			log_add(trf("Tip: {0}", _t));
 			return _t;
 		}
 	}
 	for (var tries = 0; tries < 10; tries++) {
 		var _p = arr_pick(D.ports_list);
+		if (!port_open(_p.id)) continue;
 		var _pm = variable_struct_get(G.portmeta, _p.id);
 		var _high_ok = _pm.high_t >= (G.t div WEEKS_PER_MONTH) && variable_struct_get(G.goods, _pm.high_good).unlocked;
 		var _low_ok = _pm.low_t >= (G.t div WEEKS_PER_MONTH) && variable_struct_get(G.goods, _pm.low_good).unlocked;
@@ -265,12 +267,12 @@ function tavern_drink() {
 		var _t;
 		if (_high_ok && (!_low_ok || irandom(1) == 0)) {
 			_pm.high_known = true;
-			_t = "Merchants in " + _p.name + " will pay a fortune for " + variable_struct_get(D.goods, _pm.high_good).name + " in " + month_name(_pm.high_t * WEEKS_PER_MONTH) + ".";
+			_t = trf("Merchants in {0} will pay a fortune for {1} in {2}.", _p.name, variable_struct_get(D.goods, _pm.high_good).name, month_name(_pm.high_t * WEEKS_PER_MONTH));
 		} else {
 			_pm.low_known = true;
-			_t = variable_struct_get(D.goods, _pm.low_good).name + " will be dirt cheap in " + _p.name + " in " + month_name(_pm.low_t * WEEKS_PER_MONTH) + ".";
+			_t = trf("{0} will be dirt cheap in {1} in {2}.", variable_struct_get(D.goods, _pm.low_good).name, _p.name, month_name(_pm.low_t * WEEKS_PER_MONTH));
 		}
-		log_add("Tip: " + _t);
+		log_add(trf("Tip: {0}", _t));
 		return _t;
 	}
 	return "Nobody has anything worth hearing tonight.";

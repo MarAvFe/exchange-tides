@@ -65,16 +65,19 @@ function screen_port() {
 	if (_bg >= 0) draw_spr("port_" + p.id, 640, 360, 1280 / sprite_get_width(_bg));
 	else draw_backdrop(0.2);
 
-	var _labels = { market: "Marketplace", bank: "Bank", lender: "Moneylender", shipyard: "Shipyard", tavern: "Tavern", governor: "Governor's House", curio: "Curio Dealer" };
 	var _lay = port_layout(p);
 	var _t = current_time / 1000;
 
-	// Hover: front-most building under the mouse wins.
-	var _hov = -1;
+	// Hover: of the buildings under the mouse, the one whose body centre is closest wins (front rows
+	// would otherwise swallow the buildings behind them). Hit boxes hug the painted building.
+	var _hov = -1, _best = 1000000000;
 	for (var i = array_length(_lay) - 1; i >= 0; i--) {
 		var L = _lay[i];
-		var _w = 300 * L.s, _h = 250 * L.s;
-		if (ui_hover(L.x - _w / 2, L.y - _h, _w, _h + 6)) { _hov = i; break; }
+		var _w = 210 * L.s, _h = 230 * L.s;
+		if (ui_hover(L.x - _w / 2, L.y - _h, _w, _h + 6)) {
+			var _d = point_distance(global.UI.mx, global.UI.my, L.x, L.y - _h * 0.45);
+			if (_d < _best) { _best = _d; _hov = i; }
+		}
 	}
 
 	for (var i = 0; i < array_length(_lay); i++) {
@@ -102,7 +105,7 @@ function screen_port() {
 	// Name banner above the hovered building; click to enter.
 	if (_hov >= 0) {
 		var L = _lay[_hov];
-		var _lbl = variable_struct_get(_labels, L.b);
+		var _lbl = building_label(L.b);
 		var _tw = ui_text_width(_lbl, 1.3) + 36;
 		var _by = L.y - 262 * L.s - 30;
 		draw_set_colour(UI_PAPER); draw_roundrect_ext(L.x - _tw / 2, _by - 20, L.x + _tw / 2, _by + 20, 12, 12, false);
@@ -126,4 +129,10 @@ function screen_port() {
 	if (ui_button(734, _by + 6, 80, 40, "Help")) ui_go("help");
 	if (ui_button(820, _by + 6, 110, 40, "Menu", true, make_colour_rgb(120, 60, 60))) { save_game("autosave.json"); ui_go("title"); }
 	draw_objective_bar();
+}
+
+/// Display name of a building type (translated when drawn).
+function building_label(_b) {
+	var _labels = { market: "Marketplace", bank: "Bank", lender: "Moneylender", shipyard: "Shipyard", tavern: "Tavern", governor: "Governor's House", curio: "Curio Dealer" };
+	return struct_get_or(_labels, _b, _b);
 }

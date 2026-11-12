@@ -57,7 +57,7 @@ function fleet_make_flagship(_i) {
 	G.ship = G.fleet[_i];
 	G.fleet[_i] = _old;
 	fleet_pass_flag(_old, G.ship);
-	log_add("The " + G.ship.name + " is your new flagship.");
+	log_add(trf("The {0} is your new flagship.", G.ship.name));
 }
 
 /// Ship by fleet index: 0 = flagship, 1.. = G.fleet.
@@ -90,6 +90,6 @@ function cargo_trim() {
 		_over -= _q;
 		_lost += (_lost == "" ? "" : ", ") + string(_q) + " " + variable_struct_get(global.D.goods, _best).name;
 	}
-	if (_lost != "") log_add("Lost " + _lost + " with the ship's hold.");
+	if (_lost != "") log_add(trf("Lost {0} with the ship's hold.", _lost));
 	return _lost;
 }

@@ -62,10 +62,29 @@ function eff(_name, _fallback = 0) {
 	return effect_eval(_name, struct_get_or(global.D.config, _name, _fallback));
 }
 
+/// Player-facing wording for each effect name (missing names fall back to the raw key).
+function effect_label(_name) {
+	static L = {
+		sailing_storm_frequency: "Storms", sailing_combat_frequency: "Pirate encounters", sailing_lost: "Chance to ride out a storm",
+		sailing_delay: "Storm delays", combat_player_accuracy: "Your gunnery", combat_enemy_accuracy: "Enemy gunnery",
+		combat_speed: "Reload speed", combat_enemy_speed: "Enemy reload speed", ship_space: "Cargo space", ship_health: "Hull strength",
+		bank_interest: "Bank interest", moneylender_interest: "Loan interest", moneylender_max_loan: "Credit limit",
+		alehouse_tip_frequency: "Tavern tips", alehouse_drink_prices: "Price of a round", contraband_seizure: "Customs seizures",
+		flee_success_base: "Escape chance", trade_buy_mult: "Buying prices", trade_sell_mult: "Selling prices",
+	};
+	return struct_get_or(L, _name, string_replace_all(_name, "_", " "));
+}
+
+/// "Storms -50%, Your gunnery +15" (a set value reads "Customs seizures 10%").
 function item_effect_text(_id) {
-	var _it = variable_struct_get(global.D.items, _id);
-	var _e = struct_get_or(_it, "effect", "");
-	if (_e == "") return "";
-	var _s = string_replace_all(_e, "_", " ");
-	return string_replace_all(_s, ";", ", ");
+	var _ops = struct_get_or(global.EFFECTS, _id, []);
+	var _out = "";
+	for (var i = 0; i < array_length(_ops); i++) {
+		var o = _ops[i];
+		var _v = string(o.value) + (o.pct ? "%" : "");
+		var _pctish = (string_pos("frequency", o.name) > 0 || string_pos("seizure", o.name) > 0 || string_pos("accuracy", o.name) > 0 || o.name == "sailing_lost");
+		var _t = tr(effect_label(o.name)) + (o.op == "add" ? " +" + _v : (o.op == "sub" ? " -" + _v : " " + _v + (_pctish && !o.pct ? "%" : "")));
+		_out += (i > 0 ? ", " : "") + _t;
+	}
+	return _out;
 }

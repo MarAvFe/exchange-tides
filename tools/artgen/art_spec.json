@@ -151,10 +151,10 @@
   {
    "name": "worldmap",
    "mode": "img2img",
-   "denoise": 0.55,
+   "denoise": 0.5,
    "scale": 1,
    "seed": 301,
-   "prompt": "top-down hand painted antique sea chart of a tropical archipelago, turquoise shallows, deep blue ocean, green jungle islands with sandy beaches, parchment texture, subtle compass rose, no text"
+   "prompt": "antique hand-painted sea chart of a tropical archipelago, watercolor islands with sandy beaches and green hills, turquoise shallows, deep blue sea with painted waves, aged parchment tones, compass rose"
   },
   {
    "name": "fort",
@@ -1329,6 +1329,798 @@
    "trim": 2,
    "seed": 7630,
    "prompt": "painted head and neck of a stern serious person with dark brown skin, front view, expressive eyes, ears, bald smooth scalp, no hair, no hat"
+  },
+  {
+   "name": "ship_barque_d1",
+   "mode": "img2img",
+   "ref": "ship_barque_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8101,
+   "prompt": "side view of a barque sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_barque_d2",
+   "mode": "img2img",
+   "ref": "ship_barque_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8102,
+   "prompt": "side view of a barque sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_barque_d3",
+   "mode": "img2img",
+   "ref": "ship_barque_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8103,
+   "prompt": "side view of a barque sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_barque_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_barque_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8104,
+   "prompt": "side view of a barque pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_barque_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_barque_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8105,
+   "prompt": "side view of a barque pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_barque_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_barque_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8106,
+   "prompt": "side view of a barque pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_brigantine_d1",
+   "mode": "img2img",
+   "ref": "ship_brigantine_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8107,
+   "prompt": "side view of a brigantine sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_brigantine_d2",
+   "mode": "img2img",
+   "ref": "ship_brigantine_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8108,
+   "prompt": "side view of a brigantine sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_brigantine_d3",
+   "mode": "img2img",
+   "ref": "ship_brigantine_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8109,
+   "prompt": "side view of a brigantine sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_brigantine_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_brigantine_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8110,
+   "prompt": "side view of a brigantine pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_brigantine_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_brigantine_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8111,
+   "prompt": "side view of a brigantine pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_brigantine_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_brigantine_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8112,
+   "prompt": "side view of a brigantine pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_frigate_d1",
+   "mode": "img2img",
+   "ref": "ship_frigate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8113,
+   "prompt": "side view of a frigate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_frigate_d2",
+   "mode": "img2img",
+   "ref": "ship_frigate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8114,
+   "prompt": "side view of a frigate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_frigate_d3",
+   "mode": "img2img",
+   "ref": "ship_frigate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8115,
+   "prompt": "side view of a frigate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_frigate_navy_d1",
+   "mode": "img2img",
+   "ref": "ship_frigate_navy_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8116,
+   "prompt": "side view of a frigate navy sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_frigate_navy_d2",
+   "mode": "img2img",
+   "ref": "ship_frigate_navy_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8117,
+   "prompt": "side view of a frigate navy sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_frigate_navy_d3",
+   "mode": "img2img",
+   "ref": "ship_frigate_navy_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8118,
+   "prompt": "side view of a frigate navy sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_frigate_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_frigate_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8119,
+   "prompt": "side view of a frigate pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_frigate_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_frigate_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8120,
+   "prompt": "side view of a frigate pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_frigate_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_frigate_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8121,
+   "prompt": "side view of a frigate pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_galleon_d1",
+   "mode": "img2img",
+   "ref": "ship_galleon_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8122,
+   "prompt": "side view of a galleon sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_galleon_d2",
+   "mode": "img2img",
+   "ref": "ship_galleon_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8123,
+   "prompt": "side view of a galleon sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_galleon_d3",
+   "mode": "img2img",
+   "ref": "ship_galleon_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8124,
+   "prompt": "side view of a galleon sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_galleon_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_galleon_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8125,
+   "prompt": "side view of a galleon pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_galleon_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_galleon_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8126,
+   "prompt": "side view of a galleon pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_galleon_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_galleon_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8127,
+   "prompt": "side view of a galleon pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_manowar_d1",
+   "mode": "img2img",
+   "ref": "ship_manowar_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8128,
+   "prompt": "side view of a manowar sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_manowar_d2",
+   "mode": "img2img",
+   "ref": "ship_manowar_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8129,
+   "prompt": "side view of a manowar sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_manowar_d3",
+   "mode": "img2img",
+   "ref": "ship_manowar_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8130,
+   "prompt": "side view of a manowar sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_manowar_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_manowar_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8131,
+   "prompt": "side view of a manowar pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_manowar_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_manowar_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8132,
+   "prompt": "side view of a manowar pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_manowar_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_manowar_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8133,
+   "prompt": "side view of a manowar pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_raider_d1",
+   "mode": "img2img",
+   "ref": "ship_raider_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8134,
+   "prompt": "side view of a raider sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_raider_d2",
+   "mode": "img2img",
+   "ref": "ship_raider_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8135,
+   "prompt": "side view of a raider sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_raider_d3",
+   "mode": "img2img",
+   "ref": "ship_raider_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8136,
+   "prompt": "side view of a raider sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_schooner_d1",
+   "mode": "img2img",
+   "ref": "ship_schooner_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8137,
+   "prompt": "side view of a schooner sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_schooner_d2",
+   "mode": "img2img",
+   "ref": "ship_schooner_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8138,
+   "prompt": "side view of a schooner sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_schooner_d3",
+   "mode": "img2img",
+   "ref": "ship_schooner_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8139,
+   "prompt": "side view of a schooner sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_schooner_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_schooner_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8140,
+   "prompt": "side view of a schooner pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_schooner_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_schooner_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8141,
+   "prompt": "side view of a schooner pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_schooner_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_schooner_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8142,
+   "prompt": "side view of a schooner pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_sloop_d1",
+   "mode": "img2img",
+   "ref": "ship_sloop_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8143,
+   "prompt": "side view of a sloop sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_sloop_d2",
+   "mode": "img2img",
+   "ref": "ship_sloop_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8144,
+   "prompt": "side view of a sloop sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_sloop_d3",
+   "mode": "img2img",
+   "ref": "ship_sloop_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8145,
+   "prompt": "side view of a sloop sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "ship_sloop_pirate_d1",
+   "mode": "img2img",
+   "ref": "ship_sloop_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.45,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8146,
+   "prompt": "side view of a sloop pirate sailing ship, lightly battle-damaged, a few cannonball holes in the sails, scorched planks, isolated"
+  },
+  {
+   "name": "ship_sloop_pirate_d2",
+   "mode": "img2img",
+   "ref": "ship_sloop_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.55,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8147,
+   "prompt": "side view of a sloop pirate sailing ship, heavily battle-damaged, torn and holed sails, broken railing, scorched hull, wisps of smoke, isolated"
+  },
+  {
+   "name": "ship_sloop_pirate_d3",
+   "mode": "img2img",
+   "ref": "ship_sloop_pirate_painted",
+   "keep_alpha": true,
+   "scale": 3,
+   "denoise": 0.65,
+   "bg": "5E7E8A",
+   "trim": 2,
+   "seed": 8148,
+   "prompt": "side view of a sloop pirate sailing ship, nearly wrecked, shredded burning sails, snapped mast, charred hull, fire and black smoke, listing, isolated"
+  },
+  {
+   "name": "npc_plate_1",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8301,
+   "prompt": "empty background scene with nobody in it, a harbour quay at dusk with lanterns and masts, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_2",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8302,
+   "prompt": "empty background scene with nobody in it, a candle-lit tavern interior with barrels and warm light, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_3",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8303,
+   "prompt": "empty background scene with nobody in it, a ship captain cabin with charts and brass instruments, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_4",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8304,
+   "prompt": "empty background scene with nobody in it, a lush tropical jungle with palms and flowers, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_5",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8305,
+   "prompt": "empty background scene with nobody in it, a stormy grey sea with dramatic clouds, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_6",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8306,
+   "prompt": "empty background scene with nobody in it, a merchant warehouse with crates and sacks, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_7",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8307,
+   "prompt": "empty background scene with nobody in it, a governor hall with red velvet drapes and gilded columns, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "npc_plate_8",
+   "mode": "txt2img",
+   "size": [
+    832,
+    1040
+   ],
+   "out": [
+    320,
+    400
+   ],
+   "seed": 8308,
+   "prompt": "empty background scene with nobody in it, a golden sunset over a calm beach, shallow depth of field, out of focus, blurred background plate",
+   "negative_extra": "person, people, man, woman, face, portrait, figure, character, human, crowd"
+  },
+  {
+   "name": "tex_wood_light",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8400,
+   "prompt": "flat seamless texture of plain light oak wood planks, natural honey brown, top-down orthographic, even lighting, photo texture",
+   "style": false,
+   "negative_extra": "objects, rope, leaves, teal, blue, green, pattern, illustration, text"
+  },
+  {
+   "name": "tex_wood_dark",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8401,
+   "prompt": "flat seamless texture of plain dark walnut wood, deep brown, top-down orthographic, even lighting, photo texture",
+   "style": false,
+   "negative_extra": "objects, rope, leaves, teal, blue, green, pattern, illustration, text"
+  },
+  {
+   "name": "tex_wood_carved",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8402,
+   "prompt": "flat seamless texture of plain dark mahogany wood grain, reddish brown, top-down orthographic, even lighting, photo texture",
+   "style": false,
+   "negative_extra": "objects, rope, leaves, teal, blue, green, pattern, illustration, text"
+  },
+  {
+   "name": "tex_paper_cream",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8403,
+   "prompt": "flat seamless texture of plain cream parchment paper, warm off-white, subtle fibres, even lighting, photo texture",
+   "style": false,
+   "negative_extra": "objects, rope, leaves, teal, blue, green, pattern, illustration, text"
+  },
+  {
+   "name": "tex_sea",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8501,
+   "style": false,
+   "prompt": "seamless watercolor painting texture of deep blue ocean water, gentle brushed wave strokes, granulating pigment on rough paper, top-down, even lighting",
+   "negative_extra": "boat, ship, land, island, text, sky, horizon, objects"
+  },
+  {
+   "name": "tex_land",
+   "mode": "txt2img",
+   "size": [
+    1024,
+    1024
+   ],
+   "out": [
+    512,
+    512
+   ],
+   "seed": 8502,
+   "style": false,
+   "prompt": "seamless gouache painting texture of lush green tropical forest canopy seen from above, varied greens and ochre patches, painterly dabs on paper, even lighting",
+   "negative_extra": "text, sky, horizon, water, people, buildings"
   }
  ]
 }

@@ -41,8 +41,8 @@ function campaign_next_chapter() {
 		variable_struct_set(_vars, _keys[i], port_def(_pid).name);
 	}
 	G.campaign.vars = _vars;
-	log_add("Chapter " + string(G.campaign.chapter + 1) + ": " + ch.title);
-	ui_toast("Chapter " + string(G.campaign.chapter + 1) + ": " + ch.title);
+	log_add(trf("Chapter {0}: {1}", G.campaign.chapter + 1, ch.title));
+	ui_toast(trf("Chapter {0}: {1}", G.campaign.chapter + 1, ch.title));
 	campaign_run();
 }
 
@@ -60,7 +60,7 @@ function campaign_pick_port(_filter, _used) {
 			if (f == "new" && arr_contains(_used, p.id)) ok = false;
 			if (string_pos("has:", f) == 1 && !arr_contains(p.buildings, string_delete(f, 1, 4))) ok = false;
 		}
-		if (p.lawless) ok = false;
+		if (p.lawless || !port_open(p.id)) ok = false;
 		if (ok) array_push(_cands, p.id);
 	}
 	if (array_length(_cands) == 0) return D.ports_list[0].id;
@@ -94,7 +94,7 @@ function campaign_current_goal() {
 
 function campaign_objective_text() {
 	var G = global.G;
-	if (G.mode != "campaign") return "Free trade: reach " + fmt_money(global.D.config.free_mode_goal) + " net worth by " + month_name(global.D.config.free_mode_years * 12);
+	if (G.mode != "campaign") return trf("Free trade: reach {0} net worth by {1}", fmt_money(global.D.config.free_mode_goal), month_name(global.D.config.free_mode_years * 12 * WEEKS_PER_MONTH));
 	if (G.campaign.done) return "Campaign complete! Keep trading as long as you like.";
 	var s = campaign_current_goal();
 	if (s == undefined) return "";
@@ -131,16 +131,16 @@ function campaign_run_step(s) {
 		case "log": log_add(campaign_text(s.text)); break;
 		case "get":
 			item_add(s.item);
-			ui_toast("Received: " + variable_struct_get(global.D.items, s.item).name);
+			ui_toast(trf("Received: {0}", variable_struct_get(global.D.items, s.item).name));
 			break;
 		case "give": item_remove(s.item); break;
 		case "reward":
 			G.cash += s.cash;
-			ui_toast("Reward: " + fmt_money(s.cash));
+			ui_toast(trf("Reward: {0}", fmt_money(s.cash)));
 			break;
 		case "unlock_good":
 			variable_struct_get(G.goods, s.good).unlocked = true;
-			ui_toast("New trade good: " + variable_struct_get(global.D.goods, s.good).name);
+			ui_toast(trf("New trade good: {0}", variable_struct_get(global.D.goods, s.good).name));
 			break;
 		case "set_level": G.level = max(G.level, s.level); break;
 		case "take": cargo_remove(s.good, s.amount); break;

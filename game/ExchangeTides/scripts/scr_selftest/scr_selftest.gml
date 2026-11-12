@@ -20,13 +20,16 @@ function selftest_init() {
 function selftest_step() {
 	var S = global.ST;
 	S.frame += 1;
-	global.UI.dialogs = [];   // the bot dismisses every dialog
+	if (S.shot != "40_dark_dialog") global.UI.dialogs = [];   // the bot dismisses every dialog
 	if (S.wait > 0) { S.wait -= 1; return; }
 	var _n = S.step;
 	S.step += 1;
 	S.wait = 3;
 	switch (_n) {
 		case 0:
+			i18n_set("es");   // the default language; every screenshot below is in Spanish
+			st_assert(tr("Back") == "Volver" && global.D.goods.fish.name == "Pescado salado" && trf("Sail to {0}  (1 week)", "X") == "Navegar a X  (1 semana)", "Spanish table and data translation");
+			st_assert(global.D.captains.vega.title == "Capitana" && global.D.captains.wren.title == "Capitán", "gendered titles");
 			ui_go("title"); S.shot = "01_title";
 			st_assert(array_length(global.FONTS.body) > 0 && array_length(global.FONTS.head) > 0, "custom fonts loaded");
 			break;
@@ -189,7 +192,10 @@ function selftest_step() {
 			while (h.kind != "hunt") h = contract_roll(_pid);
 			array_insert(contract_offers(_pid), 0, h);
 			contract_accept(_pid, 0);
-			st_assert(voyage_plan(h.port).special_enemy == h.enemy || h.port == global.G.port, "hunt contract plans its battle");
+			// A storm can blow the ship elsewhere, so look for a plan that actually reaches the port.
+			var _hp = voyage_plan(h.port);
+			for (var _r = 0; _r < 30 && _hp.dest != h.port; _r++) _hp = voyage_plan(h.port);
+			st_assert(_hp.special_enemy == h.enemy || h.port == global.G.port, "hunt contract plans its battle");
 			// Passengers: paid at their port; if late, they get off at the next port.
 			var pa = contract_roll(_pid);
 			while (pa.kind != "passenger") pa = contract_roll(_pid);
@@ -281,8 +287,8 @@ function selftest_step() {
 			st_assert(abs(effect_eval("bank_interest", 0.01) - 0.01) < 0.0001, "no effect on bank interest without items");
 			item_add("hagglers_tongue"); item_add("crowe_ledger");
 			var _bad = 0;
-			for (var k = 0; k < array_length(global.D.goods_list); k++) if (sell_price(global.D.goods_list[k].id) > buy_price(global.D.goods_list[k].id)) _bad++;
-			st_assert(_bad == 0, "selling never pays more than buying in the same market");
+			for (var k = 0; k < array_length(global.D.goods_list); k++) { var _gk = global.D.goods_list[k].id; if (buy_price(_gk) > 1 && sell_price(_gk) >= buy_price(_gk)) _bad++; }
+			st_assert(_bad == 0, "selling pays less than buying in the same market");
 			item_remove("hagglers_tongue"); item_remove("crowe_ledger");
 			global.G.t = (global.G.t div WEEKS_PER_MONTH) * WEEKS_PER_MONTH;
 			var _p0 = price_at(global.G.port, "fish");
@@ -296,8 +302,21 @@ function selftest_step() {
 			st_assert(eff("contraband_seizure", 35) == 10, "false papers set seizure to 10");
 			combat_start("dread_manowar", false);
 			for (var i = 0; i < 30; i++) combat_update(0.1);
+			// Heavy broadsides knock cannons off their carriages now and then, never the last one.
+			var _g0 = array_length(global.C.cannons), _fake = { from: global.C.enemies[0], to: global.C.allies[0], x1: 440, y1: 500 };
+			for (var i = 0; i < 400; i++) combat_gun_hit(_fake);
+			st_log("cannons " + string(_g0) + " -> " + string(global.G.ship.guns) + " after 400 heavy hits");
+			var _working = 0;
+			for (var i = 0; i < array_length(global.C.cannons); i++) if (!global.C.cannons[i].broken) _working++;
+			st_assert(global.G.ship.guns < _g0 && global.G.ship.guns >= 1 && _working == global.G.ship.guns && array_length(global.C.cannons) == _g0, "hits knock out cannons; broken ones stay listed");
+			global.C.allies[0].hp = global.C.allies[0].max_hp;
+			for (var i = 0; i < 5; i++) combat_update(0.1);   // broken guns never fire (no crash on the deck)
+			st_assert(month_end(5) == 7 && month_end(8) == 11, "month_end");
+			var _cr = contract_roll(global.G.port);
+			st_assert(_cr.due mod WEEKS_PER_MONTH == WEEKS_PER_MONTH - 1 && string_pos(string_copy(tr("by end of {0} ({1} wks left)"), 1, 6), contract_due_text(_cr)) == 1, "deadlines are month ends: " + contract_due_text(_cr));
 			S.shot = "26_combat_big";
 			S.wait = 4;
+			global.G.ship.guns = _g0;   // re-arm for the rest of the run
 			break;
 		case 29:
 			// Fort assault: a building on its island, guard ships beside it, no raiders on the way.
@@ -315,11 +334,54 @@ function selftest_step() {
 			ui_message("Townsfolk", "Generated faces", "portrait_governor");
 			ui_go("newgame"); S.shot = "27_newgame6";
 			break;
-		case 33:
+		case 30: theme_set("storybook"); ui_go("port"); S.shot = "30_story_port"; break;
+		case 31: ui_go("tavern"); S.shot = "31_story_tavern"; break;
+		case 35: theme_set("darkwood"); ui_go("port"); S.shot = "35_dark_port"; break;
+		case 36: ui_go("tavern"); S.shot = "36_dark_tavern"; break;
+		case 37: ui_go("market"); S.shot = "37_dark_market"; break;
+		case 38: global.G.ship.hp = floor(ship_max_hp() * 0.4); combat_start("pirate_schooner", false, 2); for (var i = 0; i < 20; i++) combat_update(0.1); if (array_length(global.C.allies) > 1) global.C.view = 1; S.shot = "38_dark_combat"; S.wait = 3; break;
+		case 39:
+			ui_go("map"); S.shot = "39_dark_map";
+			var _sp = map_info_spot(port_def());
+			st_assert(port_open("coralhaven") ? _sp[1] != 18 : true, "map box avoids Coralhaven (" + string(_sp[0]) + "," + string(_sp[1]) + ")");
+			break;
+		case 40: global.UI.dialogs = []; ui_dialog("barkeep", "Dark wood dialog test with a generated barkeep.", "Fine"); S.shot = "40_dark_dialog"; break;
+		case 41: theme_set("storybook"); ui_go("journal"); S.shot = "41_story_journal"; break;
+		case 42: ui_go("title"); global.UI.settings_open = true; S.shot = "42_settings"; break;
+		case 43:
+			global.UI.settings_open = false;
+			i18n_set("en");
+			st_assert(tr("Back") == "Back" && global.D.goods.fish.name == "Salt Fish", "English switch reloads data");
+			ui_go("market"); S.shot = "43_en_market";
+			break;
+		// README screenshots (English, Storybook): copied to docs/screenshots by tools/readme_shots.sh.
+		case 44:
+			// A fresh English campaign a few weeks in: some cash, cargo and a second ship.
+			new_game("campaign", "vega");
+			global.G.cash = 42000; global.G.t = 5;
+			market_buy("sugar", 10); market_buy("cotton", 20);
+			array_push(global.G.fleet, fleet_new_ship("schooner"));
+			global.UI.dialogs = []; global.UI.toasts = []; ui_go("port"); S.shot = "readme_town"; S.wait = 4;
+			break;
+		case 45: global.UI.toasts = []; ui_go("market"); S.shot = "readme_market"; break;
+		case 46: global.UI.toasts = []; global.UI.tavern_text = tavern_drink(); ui_go("tavern"); S.shot = "readme_tavern"; break;
+		case 47: global.UI.toasts = []; global.UI.pending_mode = "campaign"; ui_go("newgame"); S.shot = "readme_captains"; break;
+		case 48:
+			global.UI.toasts = [];
+			global.G.ship.hp = ship_max_hp();
+			if (array_length(global.G.fleet) == 0) array_push(global.G.fleet, fleet_new_ship("schooner"));
+			combat_start("pirate_brigantine", false, 2);
+			for (var i = 0; i < 24; i++) combat_update(0.1);
+			global.C.msg_t = 0;
+			S.shot = "readme_battle"; S.wait = 2;
+			break;
+		case 49: global.UI.toasts = []; ui_go("map"); S.shot = "readme_map"; break;
+		case 50:
+			i18n_set("es");
 			st_log("done, fails=" + string(S.fails));
 			S.wait = 2;
 			break;
-		case 34:
+		case 51:
 			game_end();
 			break;
 	}

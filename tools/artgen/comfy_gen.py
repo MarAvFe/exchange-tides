@@ -70,8 +70,9 @@ def build_graph(spec, a, seed, ref_name, w, h):
     s = spec['sampler']
     g = {
         'ckpt': {'class_type': 'CheckpointLoaderSimple', 'inputs': {'ckpt_name': CKPT}},
-        'pos': {'class_type': 'CLIPTextEncode', 'inputs': {'clip': ['ckpt', 1], 'text': a['prompt'] + ', ' + spec['style']}},
-        'neg': {'class_type': 'CLIPTextEncode', 'inputs': {'clip': ['ckpt', 1], 'text': spec['negative']}},
+        # "style": false skips the house style (e.g. for plain textures); "negative_extra" adds per-asset avoidances.
+        'pos': {'class_type': 'CLIPTextEncode', 'inputs': {'clip': ['ckpt', 1], 'text': a['prompt'] + (', ' + spec['style'] if a.get('style', True) else '')}},
+        'neg': {'class_type': 'CLIPTextEncode', 'inputs': {'clip': ['ckpt', 1], 'text': spec['negative'] + (', ' + a['negative_extra'] if a.get('negative_extra') else '')}},
         'ks': {'class_type': 'KSampler', 'inputs': {
             'model': ['ckpt', 0], 'positive': ['pos', 0], 'negative': ['neg', 0], 'seed': seed,
             'steps': s['steps'], 'cfg': s['cfg'], 'sampler_name': s['sampler_name'], 'scheduler': s['scheduler'],

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_theme",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_theme",
+  "parent":{
+    "name":"ExchangeTides",
+    "path":"ExchangeTides.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

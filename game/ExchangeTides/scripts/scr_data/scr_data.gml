@@ -15,6 +15,7 @@ function data_load_all() {
 		campaign:   load_json(_dir + "campaign.json"),
 	};
 	var D = global.D;
+	i18n_apply_data(D);   // player-visible text in the chosen language (ids untouched)
 	D.goods   = index_by_id(D.goods_list);
 	D.ports   = index_by_id(D.ports_list);
 	D.items   = index_by_id(D.items_list);

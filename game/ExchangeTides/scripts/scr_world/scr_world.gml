@@ -25,14 +25,15 @@ function new_game(_mode, _captain_id) {
 		stats: { wins: 0, losses: 0, trades: 0, profit: 0, voyages: 0, storms: 0, sunk: 0, contracts: 0 },
 		campaign: { chapter: -1, step: 0, vars: {}, wins_at_step: 0, done: false },
 		victory_shown: false,
+		closed: (_mode == "campaign") ? struct_get_or(c, "closed_ports", []) : [],   // ports this captain can never visit (campaign only)
 		pending_end: "",
 		goods: {}, portmeta: {}, markets: {},
 	};
 	economy_init();
 	var _p = variable_struct_get(D.ports, c.port);
-	log_add(c.title + " " + c.name + " takes command of the " + c.ship_name + " at " + _p.name + ".");
+	log_add(trf("{0} {1} takes command of the {2} at {3}.", c.title, c.name, c.ship_name, _p.name));
 	if (_mode == "campaign") campaign_start();
-	else log_add("Free trade: reach a net worth of " + fmt_money(D.config.free_mode_goal) + " within " + string(D.config.free_mode_years) + " years.");
+	else log_add(trf("Free trade: reach a net worth of {0} within {1} years.", fmt_money(D.config.free_mode_goal), D.config.free_mode_years));
 }
 
 function ship_def() { return variable_struct_get(global.D.pships, global.G.ship.type); }
@@ -40,6 +41,9 @@ function ship_max_hp() { return ship_max_hp_of(global.G.ship); }
 function captain_def() { return variable_struct_get(global.D.captains, global.G.captain); }
 function port_def(_pid = undefined) { return variable_struct_get(global.D.ports, _pid == undefined ? global.G.port : _pid); }
 function port_has(_pid, _building) { return arr_contains(port_def(_pid).buildings, _building); }
+
+/// False for ports closed to this captain (hidden on the map, never chosen for jobs or storms).
+function port_open(_pid) { return global.G == undefined || !arr_contains(struct_get_or(global.G, "closed", []), _pid); }
 
 function log_add(_text) {
 	var G = global.G;
@@ -95,7 +99,7 @@ function voyage_plan(_dest) {
 		else {
 			_plan.storm = "lost";
 			var _cands = [];
-			for (var i = 0; i < array_length(D.ports_list); i++) if (D.ports_list[i].id != _dest && D.ports_list[i].id != G.port) array_push(_cands, D.ports_list[i].id);
+			for (var i = 0; i < array_length(D.ports_list); i++) if (D.ports_list[i].id != _dest && D.ports_list[i].id != G.port && port_open(D.ports_list[i].id)) array_push(_cands, D.ports_list[i].id);
 			_plan.dest = arr_pick(_cands);
 		}
 	} else {
@@ -138,7 +142,7 @@ function arrive_at(_pid) {
 	G.port = _pid;
 	G.stats.voyages += 1;
 	if (!arr_contains(G.visited, _pid)) array_push(G.visited, _pid);
-	log_add("Arrived at " + port_def().name + ".");
+	log_add(trf("Arrived at {0}.", port_def().name));
 	customs_check();
 	contracts_on_arrival();
 	campaign_check();
@@ -199,6 +203,7 @@ function save_migrate() {
 		G.version = 3;
 	}
 	if (!variable_struct_exists(G, "fleet")) G.fleet = [];
+	if (!variable_struct_exists(G, "closed")) G.closed = [];
 	if (!variable_struct_exists(G.ship, "ammo")) G.ship.ammo = { firepot: 0, chains: 0, bomb: 0 };   // saves from the flagship-swap bug
 	if (!variable_struct_exists(G, "contracts")) G.contracts = [];
 	if (!variable_struct_exists(G, "offers")) G.offers = {};

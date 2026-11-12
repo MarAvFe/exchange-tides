@@ -42,6 +42,7 @@ function npc_roll(_pid, _role) {
 		cloth_col: irandom(array_length(P.cloth_colours) - 1),
 		hat_col: irandom(array_length(P.cloth_colours) - 1),
 		bg_col: irandom(array_length(P.bg_colours) - 1),
+		plate: irandom(array_length(struct_get_or(P, "plates", [0])) - 1),
 	};
 	if (_f && t.hair == "receding") t.hair = "bun";
 	if (_hat != "" && t.hair == "bun") t.hair = "short";   // a bun would poke through the hat
@@ -58,7 +59,8 @@ function npc_draw(_n, _x, _y, _scale = 1, _alpha = 1) {
 	var P = npc_parts(), t = _n.t;
 	var _hair = npc_rgb(P.hair_colours, t.hair_col), _cloth = npc_rgb(P.cloth_colours, t.cloth_col);
 	var _layers = [
-		["plate_0", npc_rgb(P.bg_colours, t.bg_col)],
+		["plate_" + string(struct_get_or(P, "plates", [0])[struct_get_or(t, "plate", 0) mod array_length(struct_get_or(P, "plates", [0]))]),
+		 struct_get_or(t, "plate", 0) == 0 ? npc_rgb(P.bg_colours, t.bg_col) : merge_colour(c_white, npc_rgb(P.bg_colours, t.bg_col), 0.25)],
 		[t.hairback != "" ? "hairback_" + t.hairback : "", _hair],
 		["coat_" + t.coat, _cloth],
 		["collar_" + t.collar, c_white],
@@ -86,7 +88,7 @@ function npc_draw_any(_npc, _x, _y, _scale = 1, _pid = undefined) {
 function npc_display_name(_npc, _pid = undefined) {
 	if (global.G != undefined && npc_is_local_role(_npc)) {
 		var n = npc_get(_pid == undefined ? global.G.port : _pid, _npc);
-		return (_npc == "governor") ? n.name : n.name + ", " + n.title;
+		return (_npc == "governor") ? n.name : n.name + ", " + tr_g(n.title, struct_get_or(n, "female", false));
 	}
 	return npc_name(_npc);
 }

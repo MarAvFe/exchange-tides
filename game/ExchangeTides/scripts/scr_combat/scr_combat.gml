@@ -62,22 +62,26 @@ function combat_start(_enemy_id, _special, _extra = -1) {
 	// Allies: your flagship plus the rest of your fleet.
 	var _sd = ship_def();
 	var _allies = [{ name: G.ship.name, sprite: _sd.sprite, hp: G.ship.hp, max_hp: ship_max_hp(), thaco: _sd.thaco,
-	                 flagship: true, item: "", ship: G.ship, guns: G.ship.guns, reload: 0, reload_time: 0, state: "alive", fade: 0, bob: 0, shake: 0, burn: 0 }];
+	                 flagship: true, item: "", ship: G.ship, guns: G.ship.guns, reload: 0, reload_time: 0, state: "alive", fade: 0, bob: 0, shake: 0, burn: 0, cannons: [] }];
 	// Your other ships fight with full broadsides on their own reload.
 	for (var i = 0; i < array_length(G.fleet); i++) {
 		var fs = G.fleet[i], fd = ship_def_of(fs);
 		if (fs.hp <= 0) continue;
 		array_push(_allies, { name: fs.name, sprite: fd.sprite, hp: fs.hp, max_hp: ship_max_hp_of(fs), thaco: fd.thaco, flagship: false,
-			item: "", ship: fs, guns: fs.guns, reload: 1 + random(2), reload_time: fd.reload * RELOAD_K / max(0.2, eff("combat_speed", 1)), state: "alive", fade: 0, bob: random(6), shake: 0, burn: 0 });
+			item: "", ship: fs, guns: fs.guns, reload: 1 + random(2), reload_time: fd.reload * RELOAD_K / max(0.2, eff("combat_speed", 1)), state: "alive", fade: 0, bob: random(6), shake: 0, burn: 0, cannons: [] });
+		// Each gun of an escort runs its own reload loop too (same overall rate as a full broadside).
+		var _ea = _allies[array_length(_allies) - 1];
+		var _ep = _ea.reload_time * ((_weather == "rain") ? 1.1 : 1);
+		for (var k = 0; k < fs.guns; k++) { var _pp = _ep * random_range(0.9, 1.1); array_push(_ea.cannons, { t: random(_pp), period: _pp, ammo: "", broken: false }); }
 	}
 	var _na = array_length(_allies);
-	// Flagship front and centre-left; the rest spread out behind it, alternating sides.
+	// Flagship in front; the rest of the fleet sails a row further back, spread evenly so hulls never overlap.
+	var _m = _na - 1;
 	for (var i = 0; i < _na; i++) {
-		if (i == 0) { _allies[i].x = 420; _allies[i].y = ALLY_PLANE_Y; _allies[i].s = ALLY_PLANE_S; continue; }
-		var _k = (i + 1) div 2, _side = (i mod 2 == 1) ? -1 : 1;
-		_allies[i].x = 420 + _side * _k * min(230, 820 / _na) + (_side > 0 ? 120 : 0);
-		_allies[i].y = ALLY_PLANE_Y - 40 - (_k mod 2) * 14;
-		_allies[i].s = ALLY_PLANE_S * 0.78;
+		if (i == 0) { _allies[i].x = 440; _allies[i].y = ALLY_PLANE_Y; _allies[i].s = ALLY_PLANE_S; continue; }
+		_allies[i].x = lerp(230, 1130, (i - 0.5) / _m) + ((i mod 2) ? -20 : 20);
+		_allies[i].y = ALLY_PLANE_Y - 66;
+		_allies[i].s = ALLY_PLANE_S * 0.64;
 	}
 
 	// Your cannons: each fires on its own loop, starting at a random point of its reload.
@@ -86,14 +90,15 @@ function combat_start(_enemy_id, _special, _extra = -1) {
 	var _cannons = [];
 	for (var i = 0; i < G.ship.guns; i++) {
 		var _p = _period * random_range(0.9, 1.1);
-		array_push(_cannons, { t: random(_p), period: _p, ammo: "" });
+		array_push(_cannons, { t: random(_p), period: _p, ammo: "", broken: false });
 	}
+	_allies[0].cannons = _cannons;   // the same array: the flagship's gun deck
 
 	global.C = {
 		def: _main, special: _special, weather: _weather,
-		enemies: _enemies, allies: _allies, cannons: _cannons, target: 0, hover: -1, fort: _fort,
+		enemies: _enemies, allies: _allies, cannons: _cannons, target: 0, hover: -1, fort: _fort, view: 0,
 		flee_chance: eff("flee_success_base", 30), flee_cooldown: 0,
-		shots: [], fx: [], parts: [], booty: 0, sunk: 0, special_kind: "",
+		shots: [], fx: [], parts: [], booty: 0, sunk: 0, special_kind: "", guns_lost: 0,
 		result: "", result_text: "", time: 0, msg: "", msg_t: 0,
 	};
 	ui_go("combat");
@@ -124,7 +129,7 @@ function combat_spawn_shot(_from, _to, _hit, _dmg, _ammo, _delay) {
 	if (_hit) { _tx += random_range(-60, 60); _ty += random_range(-20, 20); }
 	else { _tx += random_range(-180, 180); _ty += choose(-1, 1) * random_range(40, 80); }
 	array_push(C.shots, { x0: _x0, y0: _y0, x1: _tx, y1: _ty, t: -_delay, dur: 0.8 + random(0.3),
-		to: _to, hit: _hit, dmg: _dmg, ammo: _ammo, fired: false, spin: random(360) });
+		from: _from, to: _to, hit: _hit, dmg: _dmg, ammo: _ammo, fired: false, spin: random(360) });
 }
 
 /// Fires one of your cannons at the current target (with its loaded special ammo, if any).
@@ -153,7 +158,7 @@ function combat_cannon_fire(_c) {
 		var _a = variable_struct_get(D.ammo, _c.ammo);
 		// Special shot never misses: it is the player's deliberate play.
 		combat_spawn_shot(_from, _tgt, true, _a.damage, _c.ammo, 0);
-		combat_msg(_a.name + " - a direct hit!");
+		combat_msg(trf("{0} - a direct hit!", _a.name));
 		_c.ammo = "";
 	} else {
 		combat_spawn_shot(_from, _tgt, roll100() < combat_hit_chance(_tgt.thaco, _acc), 1, "cannon", 0);
@@ -168,7 +173,7 @@ function combat_attach(_ammo) {
 	var _best = -1, _bk = -1;
 	for (var i = 0; i < array_length(C.cannons); i++) {
 		var c = C.cannons[i];
-		if (c.ammo != "") continue;
+		if (c.ammo != "" || c.broken) continue;
 		var _k = c.t / c.period;
 		if (_k > _bk) { _bk = _k; _best = i; }
 	}
@@ -196,15 +201,40 @@ function combat_enemy_fire(_e) {
 	_e.reload = _e.reload_time;
 }
 
+/// A hit on one of your ships may knock a cannon off its carriage for good (replace it at a shipyard).
+/// The heavier the shooter's broadside, the likelier: about 2% a hit from a 4-gun sloop, 4-6% from a fort.
+function combat_gun_hit(_s) {
+	var C = global.C, G = global.G;
+	var _fp = struct_get_or(_s, "from", undefined);
+	var _guns = (_fp != undefined) ? struct_get_or(_fp, "guns", 4) : 4;
+	if (random(1) >= min(0.06, 0.012 + 0.0015 * _guns)) return;
+	var a = _s.to;
+	// Knocked-out guns stay on the deck, marked and useless, so you can see what you have lost.
+	var _ok = [];
+	for (var k = 0; k < array_length(a.cannons); k++) if (!a.cannons[k].broken) array_push(_ok, k);
+	if (array_length(_ok) <= 1) return;   // the last gun is never lost
+	// Prefer an empty gun; a loaded special shot is lost with its cannon.
+	var _empty = [];
+	for (var k = 0; k < array_length(_ok); k++) if (a.cannons[_ok[k]].ammo == "") array_push(_empty, _ok[k]);
+	var _pick = (array_length(_empty) > 0) ? arr_pick(_empty) : arr_pick(_ok);
+	var c = a.cannons[_pick];
+	c.broken = true; c.ammo = ""; c.t = 0;
+	a.guns = array_length(_ok) - 1;
+	a.ship.guns = a.guns;
+	C.guns_lost += 1;
+	fx_hit(_s.x1, _s.y1, "firepot", 1.1);
+	combat_msg(trf("A cannon on the {0} is blown off its carriage!", a.name));
+}
+
 function combat_try_flee() {
 	var C = global.C;
 	if (C.result != "" || C.flee_cooldown > 0) return;
 	if (roll100() < C.flee_chance) {
-		combat_end("fled", "You crowd on sail and slip away from the " + C.def.name + ".");
+		combat_end("fled", trf("You crowd on sail and slip away from the {0}.", C.def.name));
 	} else {
 		C.flee_chance = min(eff("flee_success_max", 80), C.flee_chance + eff("flee_success_inc", 10));
 		C.flee_cooldown = 2.0;
-		combat_msg("They cut you off! Next attempt: " + string(floor(C.flee_chance)) + "%");
+		combat_msg(trf("They cut you off! Next attempt: {0}%", floor(C.flee_chance)));
 	}
 }
 
@@ -222,21 +252,22 @@ function combat_update(_dt) {
 	// Your cannons.
 	for (var i = 0; i < array_length(C.cannons); i++) {
 		var c = C.cannons[i];
+		if (c.broken) continue;
 		c.t += _dt;
 		if (c.t >= c.period) { c.t -= c.period; combat_cannon_fire(c); }
 	}
-	// Escorts fire a half broadside at your target.
+	// Escorts: every working gun fires at your target on its own reload.
 	for (var i = 1; i < array_length(C.allies); i++) {
 		var a = C.allies[i];
 		if (!combat_alive(a)) continue;
-		a.reload -= _dt;
-		if (a.reload <= 0) {
+		for (var k = 0; k < array_length(a.cannons); k++) {
+			var c = a.cannons[k];
+			if (c.broken) continue;
+			c.t += _dt;
+			if (c.t < c.period) continue;
+			c.t -= c.period;
 			var _ti = combat_target();
-			if (_ti >= 0) for (var k = 0; k < a.guns; k++) {
-				var _t = C.enemies[_ti];
-				combat_spawn_shot(a, _t, roll100() < combat_hit_chance(_t.thaco, 0), 1, "cannon", k * 0.08);
-			}
-			a.reload = a.reload_time;
+			if (_ti >= 0) { var _t = C.enemies[_ti]; combat_spawn_shot(a, _t, roll100() < combat_hit_chance(_t.thaco, 0), 1, "cannon", 0); }
 		}
 	}
 	// Enemy behaviours.
@@ -247,7 +278,7 @@ function combat_update(_dt) {
 		var _behave = behavior_get(e.def.behavior);
 		var _act = _behave(e, C, _dt);
 		if (_act == "fire") combat_enemy_fire(e);
-		else if (_act == "flee" && !(C.special && i == 0)) { e.state = "fled"; combat_msg("The " + e.def.name + " breaks off and flees."); }
+		else if (_act == "flee" && !(C.special && i == 0)) { e.state = "fled"; combat_msg(trf("The {0} breaks off and flees.", e.def.name)); }
 	}
 	// Shots in flight.
 	for (var i = array_length(C.shots) - 1; i >= 0; i--) {
@@ -258,7 +289,13 @@ function combat_update(_dt) {
 		if (s.hit) {
 			fx_hit(s.x1, s.y1, s.ammo, s.y1 < 420 ? 0.8 : 1.1);
 			combat_spread(s);
-			if (combat_alive(s.to)) { s.to.hp -= s.dmg; s.to.shake = 0.25; if (string_pos("firepot", s.ammo) > 0 || string_pos("bomb", s.ammo) > 0) s.to.burn = max(s.to.burn, 4); }
+			if (combat_alive(s.to)) {
+				s.to.hp -= s.dmg;
+				var _sc = struct_get_or(s.to, "s", ENEMY_PLANE_S);
+				fx_plunk(s.x1, s.y1, s.to.y + 58 * _sc, _sc);
+				if (string_pos("firepot", s.ammo) > 0 || string_pos("bomb", s.ammo) > 0) s.to.burn = max(s.to.burn, 4);
+				if (variable_struct_exists(s.to, "flagship")) combat_gun_hit(s);   // only your ships have "flagship"
+			}
 		} else fx_splash(s.x1, s.y1, s.y1 < 420 ? 0.8 : 1.1);
 		array_delete(C.shots, i, 1);
 	}
@@ -283,7 +320,7 @@ function combat_update(_dt) {
 			C.sunk += 1;
 			G.stats.sunk += 1;
 			C.booty += floor(e.def.booty * random_range(0.75, 1.25));
-			combat_msg("The " + e.def.name + " is going down!");
+			combat_msg(trf("The {0} is going down!", e.def.name));
 		}
 		if (e.state == "alive") _afloat++;
 	}
@@ -294,15 +331,15 @@ function combat_update(_dt) {
 			a.state = "sunk";
 			for (var k = 0; k < array_length(G.fleet); k++) if (G.fleet[k] == a.ship) { array_delete(G.fleet, k, 1); break; }
 			var _lost = cargo_trim();
-			log_add("The " + a.name + " was sunk in battle.");
-			combat_msg("The " + a.name + " is going down!" + (_lost != "" ? " Lost " + _lost + "." : ""));
+			log_add(trf("The {0} was sunk in battle.", a.name));
+			combat_msg(trf("The {0} is going down!", a.name) + (_lost != "" ? " " + trf("Lost {0}.", _lost) : ""));
 		}
 	}
 	G.ship.hp = max(0, C.allies[0].hp);
 	if (G.ship.hp <= 0) combat_lose();
 	else if (_afloat == 0) {
 		if (C.sunk > 0) combat_win();
-		else combat_end("enemy_fled", "The enemy breaks off and flees. No prize today.");
+		else combat_end("enemy_fled", tr("The enemy breaks off and flees. No prize today."));
 	}
 }
 
@@ -311,8 +348,8 @@ function combat_win() {
 	var _booty = C.booty;
 	G.cash += _booty;
 	G.stats.wins += 1;
-	var _who = (C.sunk > 1) ? string(C.sunk) + " ships strike their colours!" : "The " + C.def.name + " strikes her colours!";
-	var _txt = _who + " You take " + fmt_money(_booty) + " in plunder.";
+	var _who = (C.sunk > 1) ? trf("{0} ships strike their colours!", C.sunk) : trf("The {0} strikes her colours!", C.def.name);
+	var _txt = _who + " " + trf("You take {0} in plunder.", fmt_money(_booty));
 	if (irandom(99) < 40 && cargo_free() > 0) {
 		var _cands = [];
 		for (var k = 0; k < array_length(D.goods_list); k++) {
@@ -322,9 +359,9 @@ function combat_win() {
 		var _gid = arr_pick(_cands);
 		var _q = min(cargo_free(), irandom_range(2, 10) * C.sunk);
 		cargo_add(_gid, _q, 0);
-		_txt += " Their holds yield " + string(_q) + " " + variable_struct_get(D.goods, _gid).name + ".";
+		_txt += " " + trf("Their holds yield {0} {1}.", _q, variable_struct_get(D.goods, _gid).name);
 	}
-	log_add("Defeated the " + C.def.name + (C.sunk > 1 ? " and " + string(C.sunk - 1) + " more" : "") + " (" + fmt_money(_booty) + ").");
+	log_add(C.sunk > 1 ? trf("Defeated the {0} and {1} more ({2}).", C.def.name, C.sunk - 1, fmt_money(_booty)) : trf("Defeated the {0} ({1}).", C.def.name, fmt_money(_booty)));
 	level_update();
 	combat_end("won", _txt);
 	contracts_on_sink(C.sunk);
@@ -341,30 +378,52 @@ function combat_lose() {
 	var _lost = floor(G.cash / 2);
 	G.cash -= _lost;
 	G.ship.hp = 1;
-	log_add("Boarded by the " + C.def.name + ". Lost all cargo and " + fmt_money(_lost) + ".");
-	combat_end("lost", "Your ship is boarded. They strip your hold and half your purse, then leave you drifting with a shattered hull.");
+	log_add(trf("Boarded by the {0}. Lost all cargo and {1}.", C.def.name, fmt_money(_lost)));
+	combat_end("lost", tr("Your ship is boarded. They strip your hold and half your purse, then leave you drifting with a shattered hull."));
 }
 
 function combat_end(_result, _text) {
 	var C = global.C;
+	if (C.guns_lost > 0) {
+		_text += " " + trn(C.guns_lost, "{0} cannon was knocked out; a shipyard can replace it.", "{0} cannons were knocked out; a shipyard can replace them.");
+		log_add(trn(C.guns_lost, "{0} cannon knocked out in the fight.", "{0} cannons knocked out in the fight."));
+	}
 	C.result = _result;
 	C.result_text = _text;
 }
 
 // ---- drawing -----------------------------------------------------------------------------
+/// Ships look more battered as they lose hull: sprite variants _d1 (<=80%), _d2 (<=50%), _d3 (<=25%).
+/// Slim hull bar with no numbers, centred on (_x, _y).
+function combat_hp_bar(_s, _x, _y, _w, _col) {
+	var _f = clamp(_s.hp / max(1, _s.max_hp), 0, 1);
+	draw_set_alpha(0.75); draw_set_colour(c_black);
+	draw_rectangle(_x - _w / 2 - 1, _y - 1, _x + _w / 2 + 1, _y + 5, false);
+	draw_set_alpha(1);
+	draw_set_colour(_f > 0.5 ? _col : (_f > 0.25 ? make_colour_rgb(230, 180, 60) : make_colour_rgb(220, 60, 50)));
+	if (_f > 0) draw_rectangle(_x - _w / 2, _y, _x - _w / 2 + _w * _f, _y + 4, false);
+}
+
+function ship_sprite_hp(_base, _frac) {
+	var _k = (_frac <= 0.25) ? 3 : ((_frac <= 0.5) ? 2 : ((_frac <= 0.8) ? 1 : 0));
+	if (_k > 0 && spr(_base + "_d" + string(_k)) >= 0) return _base + "_d" + string(_k);
+	return _base;
+}
+
 function combat_ship_draw(_s, _sprite, _scale, _flip, _phase) {
 	var C = global.C;
+	_sprite = ship_sprite_hp(_sprite, max(0, _s.hp) / max(1, _s.max_hp));
 	var _d = struct_get_or(_s, "def", undefined);   // allies have no def
 	if (_d != undefined && struct_get_or(_d, "behavior", "") == "stationary") {
 		// A building: no bobbing; when destroyed it crumbles into smoke instead of sinking.
 		var _gone = (_s.state != "alive") ? min(1, _s.fade / 3) : 0;
 		if (_gone >= 1) return;
-		draw_spr(_sprite, _s.x + (_s.shake > 0 ? random_range(-3, 3) : 0), _s.y + _gone * 18, 0.95, 1 - _gone, false, 0);
+		draw_spr(_sprite, _s.x, _s.y + _gone * 18, 0.95, 1 - _gone, false, 0);
 		return;
 	}
 	var _sink = (_s.state == "sunk") ? min(1, _s.fade / 2.5) : 0;
 	var _flee = (_s.state == "fled") ? min(1, _s.fade / 2.5) : 0;
-	var _x = _s.x + (_flee * 500) * (_flip ? 1 : -1) + (_s.shake > 0 ? random_range(-4, 4) : 0);
+	var _x = _s.x + (_flee * 500) * (_flip ? 1 : -1);
 	var _y = _s.y + sin(C.time * 1.5 + _phase) * 5 * _scale + _sink * 60;
 	var _a = 1 - max(_sink, _flee);
 	if (_a <= 0) return;
@@ -416,14 +475,29 @@ function combat_draw() {
 			}
 			draw_set_alpha(1);
 		}
-		ui_bar(e.x - 70, e.y - 100, 140, 12, e.hp / e.max_hp, make_colour_rgb(200, 70, 60), "");
-		ui_text(e.x, e.y - 122, e.def.name, 0.9, c_white, fa_center);
+		var _top = (e.def.behavior == "stationary") ? 130 : 96;
+		combat_hp_bar(e, e.x, e.y + sin(C.time * 1.5 + e.bob) * 5 * ENEMY_PLANE_S - _top, 96, make_colour_rgb(214, 70, 56));
+		ui_text(e.x + 1, e.y - _top - 21, e.def.name, 0.8, c_black, fa_center);
+		ui_text(e.x, e.y - _top - 22, e.def.name, 0.8, c_white, fa_center);
 	}
 
-	// Ally plane (foreground).
+	// Ally plane (foreground). Click one of your ships to show its guns on the left.
+	if (!combat_alive(C.allies[C.view])) C.view = 0;
+	if (C.result == "" && U.click) for (var i = 0; i < array_length(C.allies); i++) {   // front ship first
+		var a = C.allies[i];
+		if (combat_alive(a) && ui_hover(a.x - 110 * a.s, a.y - 100 * a.s, 220 * a.s, 170 * a.s)) { C.view = i; U.click = false; break; }
+	}
+	var _multi = array_length(C.allies) > 1;
 	for (var i = array_length(C.allies) - 1; i >= 0; i--) {
 		var a = C.allies[i];
+		if (_multi && i == C.view && combat_alive(a)) {   // the ship whose guns are shown: a gold ring on the water
+			draw_set_colour(UI_GOLD); draw_set_alpha(0.7);
+			draw_ellipse(a.x - 100 * a.s, a.y + 44 * a.s, a.x + 100 * a.s, a.y + 74 * a.s, true);
+			draw_ellipse(a.x - 99 * a.s, a.y + 45 * a.s, a.x + 99 * a.s, a.y + 73 * a.s, true);
+			draw_set_alpha(1);
+		}
 		combat_ship_draw(a, a.sprite, a.s, false, a.bob);
+		if (combat_alive(a)) combat_hp_bar(a, a.x, a.y + sin(C.time * 1.5 + a.bob) * 5 * a.s - 112 * a.s, 120 * a.s, make_colour_rgb(80, 196, 100));
 	}
 
 	// Cannonballs on parabolic arcs; fire pots and kegs glow.
@@ -471,60 +545,75 @@ function combat_draw() {
 		draw_set_alpha(1);
 	}
 
-	// HUD: your fleet.
-	ui_bar(40, 30, 380, 22, C.allies[0].hp / C.allies[0].max_hp, make_colour_rgb(70, 170, 90), G.ship.name + "  " + string(max(0, C.allies[0].hp)) + "/" + string(C.allies[0].max_hp));
-	for (var i = 1; i < array_length(C.allies); i++) {
-		var a = C.allies[i];
-		ui_bar(40, 34 + i * 26, 260, 14, a.hp / a.max_hp, make_colour_rgb(90, 150, 110), "");
-		ui_text(310, 34 + i * 26 + 7, a.name + (a.state == "sunk" ? " (sunk)" : ""), 0.9, c_white, fa_left, fa_middle);
-	}
 	if (C.msg_t > 0) ui_text(640, 150, C.msg, 1.3, c_white, fa_center);
 	if (_ti >= 0 && C.result == "") {
 		var _hit = combat_hit_chance(C.enemies[_ti].thaco, eff("combat_player_accuracy", 0));
-		ui_text(1240, 30, "Target: " + C.enemies[_ti].def.name + "  (" + string(floor(_hit)) + "% to hit)", 1, c_white, fa_right);
+		ui_text(1240, 30, trf("Target: {0}  ({1}% to hit)", C.enemies[_ti].def.name, floor(_hit)), 1, c_white, fa_right);
 		if (array_length(C.enemies) > 1) ui_text(1240, 54, "Click a ship to change target", 0.9, make_colour_rgb(220, 230, 240), fa_right);
-		if (C.weather != "") ui_text(1240, 76, "Weather: " + C.weather, 0.9, make_colour_rgb(220, 230, 240), fa_right);
+		if (C.weather != "") ui_text(1240, 76, trf("Weather: {0}", tr(C.weather)), 0.9, make_colour_rgb(220, 230, 240), fa_right);
+		if (array_length(C.allies) > 1) ui_text(1240, 98, "Click your ships to see their guns", 0.9, make_colour_rgb(220, 230, 240), fa_right);
 	}
 
 	if (C.result == "") {
-		// Gun deck: each cannon's reload and any special ammo loaded onto it.
-		ui_panel(20, 604, 1240, 104, make_colour_rgb(70, 52, 40));
-		var _n = array_length(C.cannons);
-		var _gap = min(46, 520 / max(1, _n));
-		ui_text(46, 618, "Gun deck", 1, UI_GOLD);
+		// Gun deck: a queue of reload dials down the left edge; when it fills the screen height it
+		// continues in another column to the right.
+		// Shows the guns of whichever of your ships you clicked (the flagship by default).
+		var _va = C.allies[C.view];
+		var _guns = _va.cannons;
+		var _n = array_length(_guns);
+		var _pitch = 38, _rad = 15, _top = 50, _per = floor((590 - _top) / _pitch);
+		var _cols = max(1, ceil(_n / _per)), _rows = min(_n, _per);
+		var _title = (array_length(C.allies) > 1) ? _va.name : "Guns";
+		var _tw = min(300, ui_text_width(_title, 0.85) + 20);
+		draw_set_alpha(0.55); draw_set_colour(c_black);
+		draw_roundrect(10, 10, 30 + _cols * _pitch, _top + max(1, _rows) * _pitch - 8, false);
+		if (_title != "Guns" && _tw > 20 + _cols * _pitch) draw_roundrect(10, 10, 10 + _tw, 40, false);
+		draw_set_alpha(1);
+		ui_text(20, 16, _title, 0.85, UI_GOLD, fa_left, fa_top, 280);
 		for (var i = 0; i < _n; i++) {
-			var c = C.cannons[i];
-			var _cx = 60 + i * _gap, _cy = 668;
+			var c = _guns[i];
+			var _cx = 20 + _pitch / 2 + (i div _per) * _pitch, _cy = _top + _pitch / 2 - 4 + (i mod _per) * _pitch;
 			var _k = c.t / c.period;
-			draw_set_colour(make_colour_rgb(30, 24, 20)); draw_circle(_cx, _cy, 17, false);
+			var _ri = _rad * 0.82;
+			draw_set_colour(make_colour_rgb(30, 24, 20)); draw_circle(_cx, _cy, _rad, false);
 			draw_set_colour(_k > 0.85 ? make_colour_rgb(250, 210, 90) : make_colour_rgb(160, 140, 110));
 			for (var s = 0; s < 24 * _k; s++) {
 				var _a0 = 90 - s * 15;
-				draw_line_width(_cx + lengthdir_x(14, _a0), _cy + lengthdir_y(14, _a0), _cx + lengthdir_x(14, _a0 - 15), _cy + lengthdir_y(14, _a0 - 15), 4);
+				draw_line_width(_cx + lengthdir_x(_ri, _a0), _cy + lengthdir_y(_ri, _a0), _cx + lengthdir_x(_ri, _a0 - 15), _cy + lengthdir_y(_ri, _a0 - 15), max(2, _rad * 0.24));
 			}
 			if (c.ammo != "") {
-				draw_set_colour(c.ammo == "firepot" ? make_colour_rgb(255, 120, 40) : (c.ammo == "chains" ? make_colour_rgb(170, 180, 200) : make_colour_rgb(120, 70, 40)));
-				draw_circle(_cx, _cy, 8, false);
-			} else { draw_set_colour(make_colour_rgb(20, 20, 20)); draw_circle(_cx, _cy, 6, false); }
+				draw_set_colour(c.ammo == "firepot" ? make_colour_rgb(255, 120, 40) : (c.ammo == "chains" ? make_colour_rgb(170, 180, 200) : make_colour_rgb(150, 90, 50)));
+				draw_circle(_cx, _cy, _rad * 0.47, false);
+			} else { draw_set_colour(make_colour_rgb(20, 20, 20)); draw_circle(_cx, _cy, _rad * 0.35, false); }
+			if (c.broken) {   // knocked out: kept on the list so you know, but it no longer fires
+				draw_set_colour(make_colour_rgb(30, 24, 20)); draw_circle(_cx, _cy, _rad, false);
+				draw_set_colour(make_colour_rgb(225, 50, 40));
+				var _q = _rad * 0.62;
+				draw_line_width(_cx - _q, _cy - _q, _cx + _q, _cy + _q, 4);
+				draw_line_width(_cx - _q, _cy + _q, _cx + _q, _cy - _q, 4);
+			}
 		}
-		if (_n == 0) ui_text(60, 660, "No cannons mounted!", 1.1, make_colour_rgb(255, 200, 180));
-		// Special ammo: click to load it onto the next cannon to fire.
-		var _ax = 600;
+		if (_n == 0) ui_text(20, 60, "No cannons!", 0.9, make_colour_rgb(255, 200, 180));
+		// Special ammo (click or keys 1-3 load it onto the next gun to fire) and Flee, in one bar at the bottom.
+		var _na = array_length(D.ships.ammo) - 1;
+		var _bw = _na * 160 + 190;
+		var _ax = 640 - _bw / 2 + 20;
+		ui_panel(_ax - 20, 616, _bw + 30, 84, make_colour_rgb(70, 52, 40));
 		for (var i = 0; i < array_length(D.ships.ammo); i++) {
 			var a = D.ships.ammo[i];
 			if (a.id == "cannon") continue;
 			var _left = variable_struct_get(G.ship.ammo, a.id);
-			if (ui_button(_ax, 628, 150, 52, a.name + " (" + string(_left) + ")", _left > 0, make_colour_rgb(150, 80, 40))
+			if (ui_button(_ax, 628, 150, 52, trf("{0} ({1})", a.name, _left), _left > 0, make_colour_rgb(150, 80, 40))
 				|| (keyboard_check_pressed(ord(string(i))) && ui_enabled())) combat_attach(a.id);
 			_ax += 160;
 		}
-		if (ui_button(1090, 624, 150, 60, "Flee " + string(floor(C.flee_chance)) + "%", C.flee_cooldown <= 0, make_colour_rgb(90, 90, 110))) combat_try_flee();
+		if (ui_button(_ax + 10, 628, 150, 52, trf("Flee {0}%", floor(C.flee_chance)), C.flee_cooldown <= 0, make_colour_rgb(90, 90, 110))) combat_try_flee();
 	} else {
-		ui_panel(340, 220, 600, 260);
+		ui_panel(320, 190, 640, 330);
 		var _t = (C.result == "won") ? "Victory!" : ((C.result == "lost") ? "Defeat" : "Disengaged");
-		ui_text(640, 245, _t, 2.4, UI_INK, fa_center);
-		ui_text_box(370, 310, 540, C.result_text, 1.2, UI_INK);
-		if (ui_button(540, 410, 200, 50, "Continue")) voyage_after_battle(C.result);
+		ui_text(640, 212, _t, 2.4, UI_INK, fa_center);
+		ui_text_box(350, 276, 580, C.result_text, 1.15, UI_INK, 160);
+		if (ui_button(540, 448, 200, 50, "Continue")) voyage_after_battle(C.result);
 	}
 }
 

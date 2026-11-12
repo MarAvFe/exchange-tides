@@ -1,7 +1,7 @@
 {
  "captains": [
   {
-   "id": "vega",
+   "id": "vega", "female": true,
    "name": "Marisol Vega",
    "title": "Captain",
    "portrait": "portrait_vega",
@@ -17,7 +17,11 @@
     "firepot": 2,
     "chains": 2
    },
-   "perk": "merchant_ledger"
+   "perk": "merchant_ledger",
+   "closed_ports": [
+    "kestrel_bay"
+   ],
+   "closed_reason": "The Admiralty yards at Kestrel Bay hold her family's old debts; she cannot show her face there."
   },
   {
    "id": "wren",
@@ -36,10 +40,15 @@
     "firepot": 2,
     "chains": 4
    },
-   "perk": "gunners_eye"
+   "perk": "gunners_eye",
+   "closed_ports": [
+    "driftmoor",
+    "isla_brasa"
+   ],
+   "closed_reason": "Discharged in disgrace: Driftmoor and Isla Brasa will not let him ashore."
   },
   {
-   "id": "calder",
+   "id": "calder", "female": true,
    "name": "Ines 'Ash' Calder",
    "title": "Captain",
    "portrait": "portrait_calder",
@@ -55,7 +64,11 @@
     "firepot": 2,
     "chains": 2
    },
-   "perk": "false_papers"
+   "perk": "false_papers",
+   "closed_ports": [
+    "saltmere"
+   ],
+   "closed_reason": "Wanted in Saltmere for a little matter of forged customs seals."
   },
   {
    "id": "bale",
@@ -74,10 +87,14 @@
     "firepot": 2,
     "chains": 2
    },
-   "perk": "storm_glass"
+   "perk": "storm_glass",
+   "closed_ports": [
+    "lanterna"
+   ],
+   "closed_reason": "Swore never to return to Lanterna, where his first ship went down."
   },
   {
-   "id": "quill",
+   "id": "quill", "female": true,
    "name": "Hester Quill",
    "title": "Captain",
    "portrait": "portrait_quill",
@@ -94,7 +111,12 @@
     "firepot": 1,
     "chains": 2
    },
-   "perk": "hagglers_tongue"
+   "perk": "hagglers_tongue",
+   "closed_ports": [
+    "ironreef",
+    "tidewell"
+   ],
+   "closed_reason": "Her old employers' agents run Ironreef and Tidewell; she stays well clear."
   },
   {
    "id": "moreno",
@@ -114,7 +136,12 @@
     "firepot": 3,
     "chains": 3
    },
-   "perk": "old_colours"
+   "perk": "old_colours",
+   "closed_ports": [
+    "kestrel_bay",
+    "san_velo"
+   ],
+   "closed_reason": "A deserter with a price on his head in Kestrel Bay and San Velo."
   }
  ],
  "npcs": [

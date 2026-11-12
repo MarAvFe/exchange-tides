@@ -279,6 +279,7 @@ def main():
         L = 36 if a % 2 == 0 else 22
         c.fill([(cx + math.cos(t) * L, cy + math.sin(t) * L), (cx + math.cos(t + .25) * 8, cy + math.sin(t + .25) * 8),
                 (cx, cy), (cx + math.cos(t - .25) * 8, cy + math.sin(t - .25) * 8)], (170, 60, 50) if a == 6 else INK)
+    paint_grain(c, m, dist)
     for i in range(14):  # vignette
         col = (70, 50, 30, max(0, 90 - i * 6))
         c.rect(i, i, W - i, i + 1, col); c.rect(i, H - i - 1, W - i, H - i, col)
@@ -295,6 +296,45 @@ def main():
             c.ellipse(p['x'], p['y'], 5, 5, (220, 40, 40))
         c.save(sys.argv[sys.argv.index('--debug') + 1])
     print('map written')
+
+
+def _lum_tex(name):
+    """Luminance of a painted texture (tools/artgen/textures/), normalised to mean 0, range about -1..1."""
+    from contact import read_png
+    w, h, bpp, px = read_png(os.path.join(HERE, 'textures', name + '.png'))
+    lum = [(px[i * bpp] * 0.3 + px[i * bpp + 1] * 0.59 + px[i * bpp + 2] * 0.11) for i in range(w * h)]
+    mean = sum(lum) / len(lum)
+    dev = (sum((v - mean) ** 2 for v in lum) / len(lum)) ** 0.5 or 1
+    return w, h, [max(-2.0, min(2.0, (v - mean) / dev)) / 2 for v in lum]
+
+
+def _mir(v, n):
+    """Mirrored tiling index: textures flip at every tile edge, so no seams show."""
+    v %= 2 * n
+    return v if v < n else 2 * n - 1 - v
+
+
+def paint_grain(c, m, dist):
+    """Painterly grain: watercolor sea and gouache canopy textures modulate the flat colours (the shapes stay
+    exact, so routes still match), the sea darkens with depth, and paper fibre shows through everything."""
+    if not os.path.exists(os.path.join(HERE, 'textures', 'tex_sea.png')):
+        return
+    sw, sh, sea = _lum_tex('tex_sea')
+    lw, lh, land = _lum_tex('tex_land')
+    pw, ph, paper = _lum_tex('tex_paper')
+    for y in range(H):
+        row = c.px[y]
+        gy = min(GH - 1, y // CELL)
+        for x in range(W):
+            p = row[x]
+            gx = min(GW - 1, x // CELL)
+            k = 1 + 0.05 * paper[_mir(y, ph) * pw + _mir(x, pw)]
+            if m[gy][gx]:
+                k += 0.13 * land[_mir(y * 3, lh) * lw + _mir(x * 3, lw)]
+            else:
+                k += 0.13 * sea[_mir(y * 2, sh) * sw + _mir(x * 2, sw)]
+                k *= 1 - min(0.18, max(0, dist[gy][gx] - 3) * 0.012)   # deeper water further from land
+            p[0], p[1], p[2] = min(255, p[0] * k), min(255, p[1] * k), min(255, p[2] * k)
 
 
 def dist_sea(m, x, y):

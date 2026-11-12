@@ -12,6 +12,9 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 LIBROOT=${LIBROOT:?set LIBROOT to the folder the .debs were extracted into}
 WORK=${WORK:-/tmp/et-selftest}
 mkdir -p "$WORK"
+# Register every script/sound/datafile folder first: a script missing from the .yyp compiles but its
+# functions are silently unavailable at runtime.
+python3 -I "$ROOT/tools/gen_project.py" > /dev/null
 cd "$WORK"
 PATH=${UNZIP_SHIM_DIR:-$WORK/bin}:$PATH npx --yes @gamemaker/gm-cli@latest run "$ROOT/game/ExchangeTides/ExchangeTides.yyp" \
   --target=linux --runtime=vm > build.log 2>&1

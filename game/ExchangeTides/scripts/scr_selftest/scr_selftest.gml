@@ -377,11 +377,19 @@ function selftest_step() {
 			break;
 		case 49: global.UI.toasts = []; ui_go("map"); S.shot = "readme_map"; break;
 		case 50:
+			// Mid-voyage, nothing in the way: the README's sailing shot.
+			voyage_start("san_velo");
+			global.V.battle_at = []; global.V.plan.storm = ""; global.V.plan.special_enemy = ""; global.V.plan.battles = 0;
+			global.V.prog = 0.45;
+			global.UI.toasts = []; global.UI.dialogs = [];
+			S.shot = "readme_sailing"; S.wait = 1;
+			break;
+		case 51:
 			i18n_set("es");
 			st_log("done, fails=" + string(S.fails));
 			S.wait = 2;
 			break;
-		case 51:
+		case 52:
 			game_end();
 			break;
 	}

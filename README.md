@@ -6,47 +6,14 @@ trade lanes.
 
 Play in **Spanish or English**. A free, original game made with GameMaker.
 
-## A quick tour
+![Sailing to San Velo](docs/screenshots/sailing.png)
 
-### Pick your captain
-![Captains](docs/screenshots/captains.png)
+| | |
+|---|---|
+| ![Town](docs/screenshots/town.png) **Town**: every port is a painted harbour; click a building to enter. | ![Market](docs/screenshots/market.png) **Market**: prices move monthly; buy low, sell high. |
+| ![Tavern](docs/screenshots/tavern.png) **Tavern**: rumours and crew for hire, each a generated character. | ![Captains](docs/screenshots/captains.png) **Captains**: six captains, each with a perk and ports closed to them. |
+| ![Battle](docs/screenshots/battle.png) **Battle**: every gun reloads on its own; load special shot, pick targets. | ![Map](docs/screenshots/map.png) **Map**: week-long voyages along sea routes. |
 
-Six captains, each with their own story, a special perk and a ship to start with. Some carry old grudges, too:
-in the campaign each one has a port or two they can never set foot in again.
-
-### Every port is a town
-![Town](docs/screenshots/town.png)
-
-Twelve harbours, each with its own market, bank, tavern, shipyard and governor. Click a building to walk in.
-The people you meet are different in every game, and they remember you.
-
-### Buy low, sell high
-![Market](docs/screenshots/market.png)
-
-Prices change every month. Each port has a good that's about to spike and one that's about to crash. Find out
-which, and you're rich. Tobacco and wine are outlawed somewhere every month: they sell for double, if customs
-doesn't catch you.
-
-### Listen in the tavern
-![Tavern](docs/screenshots/tavern.png)
-
-Buy a round and the locals talk: price tips, smuggling news, rumours. Sailors looking for a berth sign on with
-skills of their own, from faster reloads to a bigger hold.
-
-### Set sail
-![Map](docs/screenshots/map.png)
-
-Every voyage takes a week along the coast and between the islands. Storms can blow you off course, and raiders
-are never far away.
-
-### Fight
-![Battle](docs/screenshots/battle.png)
-
-Battles are real time: every cannon reloads on its own. Pick your target, load fire pots, chain shot or powder
-kegs, and decide when to run. Bring up to five ships of your own, and watch out: heavy broadsides can blow your
-guns clean off their carriages.
-
-### Two ways to play
 - **Campaign:** *The Grimmer Debt*, seven chapters against Commodore Silas Grimmer and his raiders.
 - **Free Trade:** reach a fortune of 1,000,000 within three years.
 
@@ -66,8 +33,12 @@ enemy ship targets it. `Enter` closes dialogs and `Esc` goes back. Language, mus
 **Settings** on the title screen, and the in-game **Help** button explains the rest.
 
 ## About
-The game's rules were studied from *Tradewinds 2* (Sandlot Games, 2005). Every character, place, line of story
-and piece of art in Exchange Tides is original.
+Inspired by the classic *Tradewinds 2* (Sandlot Games, 2005). Exchange Tides is an independent fan project, not
+affiliated with Sandlot Games, and every character, place, line of story and piece of art in it is original.
+
+The illustrations (portraits, harbours, buildings, ships and textures) were generated with AI image models
+running locally on my own computer (DreamShaper XL Lightning in ComfyUI), many starting from simple shapes drawn by
+the game's own scripts. No artists were commissioned and no online image service was used.
 
 Want to build it yourself, run the tests or add content? See [DEVELOPING.md](DEVELOPING.md) and
 [docs/EXTENDING.md](docs/EXTENDING.md). Ideas for what comes next are in [docs/NEXT_STEPS.md](docs/NEXT_STEPS.md).

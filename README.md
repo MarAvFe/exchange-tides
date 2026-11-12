@@ -6,13 +6,12 @@ trade lanes.
 
 Play in **Spanish or English**. A free, original game made with GameMaker.
 
-![Sailing to San Velo](docs/screenshots/sailing.png)
+![Battle](docs/screenshots/battle.png)
 
 | | |
 |---|---|
 | ![Town](docs/screenshots/town.png) **Town**: every port is a painted harbour; click a building to enter. | ![Market](docs/screenshots/market.png) **Market**: prices move monthly; buy low, sell high. |
-| ![Tavern](docs/screenshots/tavern.png) **Tavern**: rumours and crew for hire, each a generated character. | ![Captains](docs/screenshots/captains.png) **Captains**: six captains, each with a perk and ports closed to them. |
-| ![Battle](docs/screenshots/battle.png) **Battle**: every gun reloads on its own; load special shot, pick targets. | ![Map](docs/screenshots/map.png) **Map**: week-long voyages along sea routes. |
+| ![Captains](docs/screenshots/captains.png) **Captains**: six captains, each with a perk and ports closed to them. | ![Map](docs/screenshots/map.png) **Map**: week-long voyages along sea routes. |
 
 - **Campaign:** *The Grimmer Debt*, seven chapters against Commodore Silas Grimmer and his raiders.
 - **Free Trade:** reach a fortune of 1,000,000 within three years.

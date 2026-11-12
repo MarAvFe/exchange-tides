@@ -4,20 +4,37 @@
 //   set_level(level) | take(good,amount) | goal(type,...) | end
 // Goal types: talk(npc,port,building) arrive(port) have_good(good,amount) deposit(amount)
 //             cash(amount) networth(amount) repay combat(wins) npccombat(enemy,port)
-//             deliver(good,amount,port) sink(n)
+//             deliver(good,amount,port) sink(n) fleet(n: ships owned) contracts(n: governor jobs done)
 // New step or goal types: add a case in campaign_run_step / campaign_goal_met.
+
+/// The story a captain plays (characters.json -> captains[].campaign), falling back to the first one.
+function campaign_for_captain(_cid) {
+	var D = global.D;
+	var c = struct_get_or(D.captains, _cid, undefined);
+	var _id = (c != undefined) ? struct_get_or(c, "campaign", "") : "";
+	if (_id != "" && variable_struct_exists(D.campaigns, _id)) return variable_struct_get(D.campaigns, _id);
+	return variable_struct_get(D.campaigns, variable_struct_get_names(D.campaigns)[0]);
+}
+
+/// The story of the game in progress.
+function campaign_def() {
+	var D = global.D, G = global.G;
+	var _id = struct_get_or(G.campaign, "id", "");
+	if (_id != "" && variable_struct_exists(D.campaigns, _id)) return variable_struct_get(D.campaigns, _id);
+	return campaign_for_captain(G.captain);
+}
 
 function campaign_start() {
 	var G = global.G;
 	G.campaign.chapter = -1;
-	log_add(global.D.campaign.intro);
+	log_add(campaign_def().intro);
 	campaign_next_chapter();
 }
 
 function campaign_chapter() {
 	var G = global.G;
 	if (G.mode != "campaign" || G.campaign.done || G.campaign.chapter < 0) return undefined;
-	var _ch = global.D.campaign.chapters;
+	var _ch = campaign_def().chapters;
 	if (G.campaign.chapter >= array_length(_ch)) return undefined;
 	return _ch[G.campaign.chapter];
 }
@@ -26,11 +43,18 @@ function campaign_next_chapter() {
 	var G = global.G, D = global.D;
 	G.campaign.chapter += 1;
 	G.campaign.step = 0;
-	if (G.campaign.chapter >= array_length(D.campaign.chapters)) { G.campaign.done = true; return; }
-	var ch = D.campaign.chapters[G.campaign.chapter];
+	var _chs = campaign_def().chapters;
+	if (G.campaign.chapter >= array_length(_chs)) { G.campaign.done = true; return; }
+	var ch = _chs[G.campaign.chapter];
 	G.level = max(G.level, ch.level);
-	// Resolve chapter variables (port filters).
+	// Resolve chapter variables (port filters). Ports picked in earlier chapters stay picked for the rest of
+	// the story, so a later chapter can send you back to someone you met ("{p2}" is still Nan's town).
 	var _vars = { here: port_def().name, captain: captain_def().name };
+	var _old = G.campaign.vars;
+	if (is_struct(_old)) {
+		var _ok = variable_struct_get_names(_old);
+		for (var i = 0; i < array_length(_ok); i++) if (_ok[i] != "here" && _ok[i] != "captain") variable_struct_set(_vars, _ok[i], variable_struct_get(_old, _ok[i]));
+	}
 	var _used = [ G.port ];
 	var _keys = variable_struct_get_names(ch.vars);
 	array_sort(_keys, true);
@@ -119,14 +143,15 @@ function campaign_run() {
 		G.campaign.step += 1;
 		G.campaign.wins_at_step = G.stats.wins;
 		G.campaign.sunk_at_step = G.stats.sunk;
+		G.campaign.contracts_at_step = G.stats.contracts;
 	}
 }
 
 function campaign_run_step(s) {
 	var G = global.G;
 	switch (s[$ "do"]) {
-		case "say":
-			ui_dialog(s.npc, campaign_text(s.text), campaign_text(struct_get_or(s, "ok", "Continue")));
+		case "say":   // optional "name" overrides the speaker's title for this story ("Commander Ada Hale")
+			ui_dialog(s.npc, campaign_text(s.text), campaign_text(struct_get_or(s, "ok", "Continue")), struct_get_or(s, "name", ""));
 			break;
 		case "log": log_add(campaign_text(s.text)); break;
 		case "get":
@@ -166,6 +191,8 @@ function campaign_goal_met(s) {
 		case "npccombat": return struct_get_or(G.campaign, "npc_won", "") == s.enemy;
 		case "deliver": return G.port == campaign_resolve(s.port) && cargo_qty(s.good) >= s.amount;
 		case "sink": return G.stats.sunk - struct_get_or(G.campaign, "sunk_at_step", G.stats.sunk) >= s.n;
+		case "fleet": return fleet_size() >= s.n;
+		case "contracts": return G.stats.contracts - struct_get_or(G.campaign, "contracts_at_step", G.stats.contracts) >= s.n;
 	}
 	return false;
 }

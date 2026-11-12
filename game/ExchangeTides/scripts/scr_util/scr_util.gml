@@ -106,7 +106,8 @@ function roll100() { return irandom(99); }
 function month_name(_t) {
 	var _mo = _t div WEEKS_PER_MONTH;
 	var _m = global.D.config.months;
-	return _m[_mo mod 12] + " " + string(global.D.config.start_year + (_mo div 12));
+	var _y0 = (variable_global_exists("G") && is_struct(global.G)) ? struct_get_or(global.G, "start_year", global.D.config.start_year) : global.D.config.start_year;
+	return _m[_mo mod 12] + " " + string(_y0 + (_mo div 12));
 }
 
 /// Last week of the month that week _t falls in.

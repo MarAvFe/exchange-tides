@@ -1,7 +1,8 @@
 {
  "captains": [
   {
-   "id": "vega", "female": true,
+   "id": "vega",
+   "female": true,
    "name": "Marisol Vega",
    "title": "Captain",
    "portrait": "portrait_vega",
@@ -21,7 +22,8 @@
    "closed_ports": [
     "kestrel_bay"
    ],
-   "closed_reason": "The Admiralty yards at Kestrel Bay hold her family's old debts; she cannot show her face there."
+   "closed_reason": "The Admiralty yards at Kestrel Bay hold her family's old debts; she cannot show her face there.",
+   "campaign": "grimmer_debt"
   },
   {
    "id": "wren",
@@ -45,10 +47,12 @@
     "driftmoor",
     "isla_brasa"
    ],
-   "closed_reason": "Discharged in disgrace: Driftmoor and Isla Brasa will not let him ashore."
+   "closed_reason": "Discharged in disgrace: Driftmoor and Isla Brasa will not let him ashore.",
+   "campaign": "bad_powder"
   },
   {
-   "id": "calder", "female": true,
+   "id": "calder",
+   "female": true,
    "name": "Ines 'Ash' Calder",
    "title": "Captain",
    "portrait": "portrait_calder",
@@ -68,7 +72,8 @@
    "closed_ports": [
     "saltmere"
    ],
-   "closed_reason": "Wanted in Saltmere for a little matter of forged customs seals."
+   "closed_reason": "Wanted in Saltmere for a little matter of forged customs seals.",
+   "campaign": "second_seal"
   },
   {
    "id": "bale",
@@ -91,10 +96,12 @@
    "closed_ports": [
     "lanterna"
    ],
-   "closed_reason": "Swore never to return to Lanterna, where his first ship went down."
+   "closed_reason": "Swore never to return to Lanterna, where his first ship went down.",
+   "campaign": "false_light"
   },
   {
-   "id": "quill", "female": true,
+   "id": "quill",
+   "female": true,
    "name": "Hester Quill",
    "title": "Captain",
    "portrait": "portrait_quill",
@@ -116,7 +123,8 @@
     "ironreef",
     "tidewell"
    ],
-   "closed_reason": "Her old employers' agents run Ironreef and Tidewell; she stays well clear."
+   "closed_reason": "Her old employers' agents run Ironreef and Tidewell; she stays well clear.",
+   "campaign": "compact"
   },
   {
    "id": "moreno",
@@ -141,7 +149,8 @@
     "kestrel_bay",
     "san_velo"
    ],
-   "closed_reason": "A deserter with a price on his head in Kestrel Bay and San Velo."
+   "closed_reason": "A deserter with a price on his head in Kestrel Bay and San Velo.",
+   "campaign": "turncoat"
   }
  ],
  "npcs": [
@@ -212,6 +221,166 @@
    "name": "Nell Varga",
    "portrait": "portrait_varga",
    "portrait_fallback": "portrait_smuggler"
+  },
+  {
+   "id": "lisle",
+   "name": "Ewan Lisle",
+   "portrait": "portrait_merchant",
+   "look": {
+    "role": "merchant",
+    "female": false,
+    "seed": 1699
+   }
+  },
+  {
+   "id": "brack",
+   "name": "Captain Ottilie Brack",
+   "portrait": "portrait_smuggler",
+   "look": {
+    "role": "crew",
+    "female": true,
+    "seed": 1701
+   }
+  },
+  {
+   "id": "brandt",
+   "name": "Teo Brandt, bosun",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 17012
+   }
+  },
+  {
+   "id": "pruett",
+   "name": "Joss Pruett, master of the Hammerhead",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 1694
+   }
+  },
+  {
+   "id": "hurst",
+   "name": "Wilma Hurst, mate of the Contract",
+   "portrait": "portrait_smuggler",
+   "look": {
+    "role": "crew",
+    "female": true,
+    "seed": 1705
+   }
+  },
+  {
+   "id": "kell",
+   "name": "Cassius Kell",
+   "portrait": "portrait_smuggler",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 1708
+   }
+  },
+  {
+   "id": "nan",
+   "name": "Nan Strand",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": true,
+    "seed": 16941
+   }
+  },
+  {
+   "id": "kip",
+   "name": "Kip Wade, powder boy",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 16942
+   }
+  },
+  {
+   "id": "dorn",
+   "name": "Felix Dorn",
+   "portrait": "portrait_merchant",
+   "look": {
+    "role": "merchant",
+    "female": false,
+    "seed": 16943
+   }
+  },
+  {
+   "id": "thorne",
+   "name": "Governor Magnus Thorne",
+   "portrait": "portrait_governor",
+   "look": {
+    "role": "governor",
+    "female": false,
+    "seed": 16944
+   }
+  },
+  {
+   "id": "fenn",
+   "name": "Mattias Fenn, engraver",
+   "portrait": "portrait_merchant",
+   "look": {
+    "role": "merchant",
+    "female": false,
+    "seed": 16991
+   }
+  },
+  {
+   "id": "pia",
+   "name": "Pia Sorel, of the Lark",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": true,
+    "seed": 17013
+   }
+  },
+  {
+   "id": "vann",
+   "name": "Governor Liesl Vann",
+   "portrait": "portrait_governor",
+   "look": {
+    "role": "governor",
+    "female": true,
+    "seed": 17051
+   }
+  },
+  {
+   "id": "ezra",
+   "name": "Ezra Mott, of the Morning Star",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 17081
+   }
+  },
+  {
+   "id": "harrow",
+   "name": "Edmund Harrow, of Harrow & Sons",
+   "portrait": "portrait_merchant",
+   "look": {
+    "role": "merchant",
+    "female": false,
+    "seed": 17082
+   }
+  },
+  {
+   "id": "hollis",
+   "name": "Hollis Kell",
+   "portrait": "portrait_sailor",
+   "look": {
+    "role": "crew",
+    "female": false,
+    "seed": 17083
+   }
   }
  ],
  "governors": {

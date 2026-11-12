@@ -60,7 +60,7 @@ function tr_g(_s, _female) {
 function trn(_n, _one, _many) { return trf(_n == 1 ? _one : _many, _n); }
 
 // Text fields of the data files that are shown to the player.
-#macro I18N_DATA_FIELDS ["name", "desc", "title", "text", "intro", "ok", "bio", "closed_reason", "greeting", "months", "ship_names", "ship_name", "pirate_names", "label", "role"]
+#macro I18N_DATA_FIELDS ["name", "desc", "title", "text", "intro", "ok", "bio", "closed_reason", "greeting", "months", "ship_names", "ship_name", "pirate_names", "label", "ending_title", "ending_text"]
 
 /// Translates the data loaded into global.D in place (only the fields above, recursively).
 function i18n_apply_data(_o) {

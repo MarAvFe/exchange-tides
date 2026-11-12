@@ -133,6 +133,7 @@ function contract_pay(_i, _how) {
 	ui_message(tr("Contract complete"), _how + "\n\n" + trf("Reward: {0}", fmt_money(c.reward)), "portrait_governor");
 	array_delete(G.contracts, _i, 1);
 	level_update();
+	campaign_check();   // story goals can ask for finished contracts
 }
 
 /// Arriving in port completes deliveries and courier runs.

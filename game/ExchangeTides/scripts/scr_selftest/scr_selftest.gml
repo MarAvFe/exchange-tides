@@ -152,7 +152,7 @@ function selftest_step() {
 				global.UI.dialogs = [];
 				if (global.G.campaign.chapter != _ch_seen) { _ch_seen = global.G.campaign.chapter; st_log("campaign reached chapter " + string(_ch_seen + 1)); }
 			}
-			st_assert(array_length(global.D.campaign.chapters) >= 7, "campaign has " + string(array_length(global.D.campaign.chapters)) + " chapters");
+			st_assert(array_length(campaign_def().chapters) >= 7, "campaign has " + string(array_length(campaign_def().chapters)) + " chapters");
 			st_assert(global.G.campaign.done, "campaign complete");
 			st_assert(item_has("crowe_ledger") && item_has("undertow_signals") && item_has("admiralty_warrant"), "new chapters handed out their items");
 			st_assert(global.G.pending_end == "victory", "victory pending");
@@ -330,6 +330,7 @@ function selftest_step() {
 			S.wait = 3;
 			break;
 		case 32:
+			st_walk_all_stories();
 			st_difficulty_sim();
 			ui_message("Townsfolk", "Generated faces", "portrait_governor");
 			ui_go("newgame"); S.shot = "27_newgame6";
@@ -345,7 +346,7 @@ function selftest_step() {
 			var _sp = map_info_spot(port_def());
 			st_assert(port_open("coralhaven") ? _sp[1] != 18 : true, "map box avoids Coralhaven (" + string(_sp[0]) + "," + string(_sp[1]) + ")");
 			break;
-		case 40: global.UI.dialogs = []; ui_dialog("barkeep", "Dark wood dialog test with a generated barkeep.", "Fine"); S.shot = "40_dark_dialog"; break;
+		case 40: global.UI.dialogs = []; ui_dialog("kell", "My father let the lamp go out the night your ship went down. Drunk, they said. He wasn't drunk. A salvage house paid him, and he taught me the trade.", "Then it ends with you."); S.shot = "40_dark_dialog"; break;
 		case 41: theme_set("storybook"); ui_go("journal"); S.shot = "41_story_journal"; break;
 		case 42: ui_go("title"); global.UI.settings_open = true; S.shot = "42_settings"; break;
 		case 43:
@@ -415,6 +416,8 @@ function st_campaign_satisfy(_g) {
 		case "repay": G.debt = 0; campaign_check(); break;
 		case "combat": G.stats.wins += _g.wins; campaign_check(); break;
 		case "sink": G.stats.sunk += _g.n; campaign_check(); break;
+		case "fleet": while (fleet_size() < _g.n) array_push(G.fleet, fleet_new_ship("sloop")); campaign_check(); break;
+		case "contracts": G.stats.contracts += _g.n; campaign_check(); break;
 		case "arrive": G.port = campaign_resolve(_g.port); campaign_check(); break;
 		case "npccombat":
 			var _pl = voyage_plan(campaign_resolve(_g.port));
@@ -422,6 +425,34 @@ function st_campaign_satisfy(_g) {
 			campaign_on_battle_won(_g.enemy);
 			break;
 	}
+}
+
+/// Plays every captain's story from the first chapter to the end (each goal satisfied the way a player
+/// would), then restores the game in progress. Catches missing items, enemies, characters or ports.
+function st_walk_all_stories() {
+	var _keep = global.G;
+	var _caps = global.D.chars.captains;
+	for (var i = 0; i < array_length(_caps); i++) {
+		var c = _caps[i];
+		new_game("campaign", c.id);
+		var _cd = campaign_def();
+		st_assert(global.G.start_year == struct_get_or(_cd, "year", 0), c.id + " story starts in " + string(_cd.year));
+		var _guard = 0;
+		while (!global.G.campaign.done && _guard < 80) {
+			_guard++;
+			var _g = campaign_current_goal();
+			if (_g == undefined) { campaign_check(); continue; }
+			if (struct_get_or(_g, "port", "") != "") st_assert(port_open(campaign_resolve(_g.port)), c.id + ": story never sends you to a closed port (" + string(campaign_resolve(_g.port)) + ")");
+			st_campaign_satisfy(_g);
+			global.UI.dialogs = [];
+		}
+		st_assert(global.G.campaign.done && global.G.pending_end == "victory", c.id + ": '" + _cd.title + "' plays to the end (" + string(array_length(_cd.chapters)) + " chapters)");
+		var _locked = 0;
+		for (var k = 0; k < array_length(global.D.goods_list); k++) if (global.D.goods_list[k].forsale && !variable_struct_get(global.G.goods, global.D.goods_list[k].id).unlocked) _locked++;
+		st_assert(_locked == 0, c.id + ": every good unlocked by the end");
+	}
+	global.UI.dialogs = []; global.UI.toasts = [];
+	global.G = _keep;
 }
 
 /// Simulates batches of random encounters at several levels and logs how much hull they cost.

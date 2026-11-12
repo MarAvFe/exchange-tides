@@ -186,9 +186,14 @@ function screen_newgame() {
 			// Right column: name, story, perk, then where you start and what is closed to you.
 			// Left column: portrait with the Set sail button under it (never covers any text).
 			ui_text(_tx, _y + 12, c.name, 1.3, UI_INK, fa_left, fa_top, _tw);
-			ui_text_box(_tx, _y + 50, _tw, c.bio, 0.9, UI_INK, 62);
+			if (global.UI.pending_mode == "campaign") {
+				// Each captain has a story of their own, in its own year.
+				var _cs = campaign_for_captain(c.id);
+				ui_text(_tx, _y + 44, trf("{0} - {1}", struct_get_or(_cs, "year", ""), _cs.title), 0.85, UI_ACCENT, fa_left, fa_top, _tw);
+				ui_text_box(_tx, _y + 66, _tw, c.bio, 0.85, UI_INK, 48);
+			} else ui_text_box(_tx, _y + 50, _tw, c.bio, 0.9, UI_INK, 62);
 			ui_text(_tx, _y + 116, trf("Perk: {0}", _perk.name), 0.95, UI_ACCENT, fa_left, fa_top, _tw);
-			ui_text_box(_tx, _y + 138, _tw, item_effect_text(c.perk), 0.8, UI_MUTED, 24);
+			ui_text(_tx, _y + 140, item_effect_text(c.perk), 0.8, UI_MUTED, fa_left, fa_top, _tw);   // one line, shrunk to fit
 			ui_text(_tx, _y + 166, trf("Starts in {0} with a {1}", port_def(c.port).name, variable_struct_get(global.D.pships, c.ship).name), 0.9, UI_INK, fa_left, fa_top, _tw);
 			ui_text(_tx, _y + 185, trf("Cash {0}", fmt_money(c.cash)) + (c.debt > 0 ? trf("   Debt {0}", fmt_money(c.debt)) : ""), 0.9, UI_INK, fa_left, fa_top, _tw);
 			if (global.UI.pending_mode == "campaign") ui_text_box(_tx, _y + 207, _tw, struct_get_or(c, "closed_reason", ""), 0.72, UI_BAD, 54);
@@ -413,6 +418,7 @@ function screen_shipyard() {
 			array_push(G.fleet, _ns);
 			array_delete(_stock, i, 1);
 			log_add(trf("Bought the {0} {1}. It joins your fleet.", s.name, _ns.name));
+			campaign_check();   // story goals can ask for a fleet
 			level_update();
 			break;
 		}
@@ -892,7 +898,7 @@ function screen_journal() {
 	var _y = 100;
 	ui_text(70, _y, G.mode == "campaign" ? "Campaign" : "Free Trade", 1.3, UI_ACCENT); _y += 34;
 	var ch = campaign_chapter();
-	if (ch != undefined) { ui_text(70, _y, trf("Chapter {0} of {1}: {2}", G.campaign.chapter + 1, array_length(global.D.campaign.chapters), ch.title), 1.05, UI_INK, fa_left, fa_top, 520); _y += 24; }
+	if (ch != undefined) { ui_text(70, _y, trf("Chapter {0} of {1}: {2}", G.campaign.chapter + 1, array_length(campaign_def().chapters), ch.title), 1.05, UI_INK, fa_left, fa_top, 520); _y += 24; }
 	ui_text_box(70, _y, 520, campaign_objective_text(), 1, UI_INK, 46); _y += 52;
 	ui_text(70, _y, trf("Contracts ({0}/{1})", array_length(G.contracts), CONTRACTS_MAX), 1.3, UI_ACCENT); _y += 34;
 	if (array_length(G.contracts) == 0) { ui_text(70, _y, "None. Governors offer work every month.", 0.95, UI_MUTED); _y += 24; }
@@ -936,7 +942,7 @@ function screen_help() {
 		"VOYAGES take a week. Storms may delay you or blow you off course; raiders attack often, sometimes in packs. In battle every cannon reloads and fires on its own. Click Fire Pot, Chain Shot or Powder Keg (keys 1-3) to load it into the next cannon; click an enemy ship to target it.",
 		"FLEET. Buy up to five ships at a shipyard. Every ship adds hold space and fights beside you. Click your ship in the sidebar to see the fleet and cargo.",
 		"CONTRACTS. Each governor offers jobs every month: deliveries, dispatches, bounties and pirate hunts. Keep track of deadlines in the journal.",
-		"CAMPAIGN: follow the objectives to bring down Commodore Grimmer. FREE TRADE: reach 1,000,000 net worth within 3 years.",
+		"CAMPAIGN: every captain has a story of their own, set in its own year. Follow the objective at the bottom of the port screen. FREE TRADE: reach 1,000,000 net worth within 3 years.",
 	];
 	var _t = "";
 	for (var i = 0; i < array_length(_paras); i++) _t += (i > 0 ? "\n\n" : "") + tr(_paras[i]);
@@ -949,9 +955,9 @@ function screen_end(_win) {
 	var G = global.G;
 	draw_spr("title", 640, 360, 1);
 	ui_panel(290, 120, 700, 480);
-	var _title = _win ? (G.mode == "campaign" ? "The Reach is Free!" : "Merchant Prince!") : "Time's Up";
+	var _title = _win ? (G.mode == "campaign" ? tr(campaign_def().ending_title) : tr("Merchant Prince!")) : tr("Time's Up");
 	ui_text(640, 150, _title, 3, UI_INK, fa_center);
-	var _t = _win ? (G.mode == "campaign" ? "Commodore Grimmer is beaten and the trade lanes are open again. Your name will be toasted in every tavern from Saltmere to Tidewell." : trf("You reached a fortune of {0}. The Reach's merchant houses beg for your custom.", fmt_money(net_worth())))
+	var _t = _win ? (G.mode == "campaign" ? tr(campaign_def().ending_text) : trf("You reached a fortune of {0}. The Reach's merchant houses beg for your custom.", fmt_money(net_worth())))
 		: trf("{0} years have passed. You end your career with a net worth of {1}.", global.D.config.free_mode_years, fmt_money(net_worth()));
 	ui_text_box(330, 240, 620, _t, 1.3, UI_INK, 130);
 	ui_text_box(330, 380, 620, trf("Voyages {0}   Battles won {1}   Lost {2}   Ships sunk {3}\nTrades {4}   Trading profit {5}   Contracts {6}\nDate: {7}", G.stats.voyages, G.stats.wins, G.stats.losses, G.stats.sunk, G.stats.trades, fmt_money(G.stats.profit), G.stats.contracts, date_name(G.t)), 1.15, UI_INK, 120);

@@ -9,10 +9,10 @@ Usage: python3 tools/i18n_check.py [es] [--all]
 import json, re, sys, glob, os
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'game', 'ExchangeTides')
-FIELDS = {"name", "desc", "title", "text", "intro", "ok", "bio", "closed_reason", "greeting", "months", "ship_names", "ship_name", "pirate_names", "label", "role"}
+FIELDS = {"name", "desc", "title", "text", "intro", "ok", "bio", "closed_reason", "greeting", "months", "ship_names", "ship_name", "pirate_names", "label", "ending_title", "ending_text"}
 SKIP_SCRIPTS = {"scr_selftest", "scr_i18n"}
 # Literals the scan picks up that are not player-visible (comments, examples, internal keys).
-NOT_TEXT = {"bring it here", "by end of February", "high month", "low month", "G", "PORT_LAYOUTS", "SETTINGS",
+NOT_TEXT = {"bring it here", "by end of February", "high month", "low month", "G", "PORT_LAYOUTS", "SETTINGS", "NAMED_LOOKS",
             "Storms -50%, Your gunnery +15", "Customs seizures 10%", "Missing data file: ", "March 1702", "Week 2, March 1702"}
 LIT = re.compile(r'"((?:[^"\\]|\\.)*)"')
 

@@ -164,9 +164,9 @@ function ui_bar(_x, _y, _w, _h, _frac, _col, _label) {
 }
 
 // ---- dialogs & toasts --------------------------------------------------------------------
-function ui_dialog(_npc, _text, _ok = "Continue") {
+function ui_dialog(_npc, _text, _ok = "Continue", _name = "") {
 	var _pid = (global.G != undefined) ? global.G.port : "";
-	array_push(global.UI.dialogs, { portrait: npc_portrait(_npc), npc: _npc, pid: _pid, name: npc_display_name(_npc), text: _text, ok: _ok });
+	array_push(global.UI.dialogs, { portrait: npc_portrait(_npc), npc: _npc, pid: _pid, name: (_name != "") ? _name : npc_display_name(_npc), text: _text, ok: _ok });
 }
 
 function ui_message(_title, _text, _portrait = "portrait_sailor") {

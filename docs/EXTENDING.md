@@ -63,7 +63,8 @@ behavior_register("boarder", function(e, C, dt) {
 Then set `"behavior":"boarder"` on any enemy in `ships.json`.
 
 ## Add campaign chapters
-`campaign.json → chapters[]`. Each chapter has `vars` (port pickers: `other`, `new`, `has:<building>`) and
+Each captain has a story of their own (see [STORIES.md](STORIES.md) for the shared timeline and canon, and how to add a story). Chapters work the same in every story:
+`campaign.json → campaigns[] → chapters[]`. Each chapter has `vars` (port pickers: `other`, `new`, `has:<building>`) and
 ordered `steps`:
 
 | step | fields |

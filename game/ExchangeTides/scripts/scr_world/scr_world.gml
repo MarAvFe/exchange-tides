@@ -23,7 +23,9 @@ function new_game(_mode, _captain_id) {
 		level: 0,
 		visited: [ c.port ],
 		stats: { wins: 0, losses: 0, trades: 0, profit: 0, voyages: 0, storms: 0, sunk: 0, contracts: 0 },
-		campaign: { chapter: -1, step: 0, vars: {}, wins_at_step: 0, done: false },
+		campaign: { id: (_mode == "campaign") ? campaign_for_captain(_captain_id).id : "", chapter: -1, step: 0, vars: {}, wins_at_step: 0, done: false },
+		// Each captain's story happens in its own year (1694-1708); free trade uses config.start_year.
+		start_year: (_mode == "campaign") ? struct_get_or(campaign_for_captain(_captain_id), "year", D.config.start_year) : D.config.start_year,
 		victory_shown: false,
 		closed: (_mode == "campaign") ? struct_get_or(c, "closed_ports", []) : [],   // ports this captain can never visit (campaign only)
 		pending_end: "",
@@ -203,6 +205,8 @@ function save_migrate() {
 		G.version = 3;
 	}
 	if (!variable_struct_exists(G, "fleet")) G.fleet = [];
+	if (!variable_struct_exists(G.campaign, "id")) G.campaign.id = (G.mode == "campaign") ? "grimmer_debt" : "";   // saves from before per-captain stories
+	if (!variable_struct_exists(G, "start_year")) G.start_year = global.D.config.start_year;
 	if (!variable_struct_exists(G, "closed")) G.closed = [];
 	if (!variable_struct_exists(G.ship, "ammo")) G.ship.ammo = { firepot: 0, chains: 0, bomb: 0 };   // saves from the flagship-swap bug
 	if (!variable_struct_exists(G, "contracts")) G.contracts = [];

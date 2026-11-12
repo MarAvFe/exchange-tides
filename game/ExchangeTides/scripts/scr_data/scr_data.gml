@@ -24,6 +24,10 @@ function data_load_all() {
 	D.ammo    = index_by_id(D.ships.ammo);
 	D.captains = index_by_id(D.chars.captains);
 	D.npcs    = index_by_id(D.chars.npcs);
+	// Stories: campaign.json holds one campaign per captain ({"campaigns": [...]}); an old single
+	// campaign file ({"chapters": [...]}) still loads as one story.
+	if (variable_struct_exists(D.campaign, "campaigns")) D.campaigns = index_by_id(D.campaign.campaigns);
+	else { D.campaigns = {}; variable_struct_set(D.campaigns, D.campaign.id, D.campaign); }
 
 	// Pre-parse every item's effect string into ops.
 	global.EFFECTS = {};

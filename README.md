@@ -13,7 +13,8 @@ Play in **Spanish or English**. A free, original game made with GameMaker.
 | ![Town](docs/screenshots/town.png) **Town**: every port is a painted harbour; click a building to enter. | ![Market](docs/screenshots/market.png) **Market**: prices move monthly; buy low, sell high. |
 | ![Captains](docs/screenshots/captains.png) **Captains**: six captains, each with a perk and ports closed to them. | ![Map](docs/screenshots/map.png) **Map**: week-long voyages along sea routes. |
 
-- **Campaign:** *The Grimmer Debt*, seven chapters against Commodore Silas Grimmer and his raiders.
+- **Campaign:** every captain has their own story, set in their own year between 1694 and 1708. Some of them
+  cross paths; some never meet. Vega's *The Grimmer Debt* pits you against Commodore Silas Grimmer and his raiders.
 - **Free Trade:** reach a fortune of 1,000,000 within three years.
 
 ## Download and play

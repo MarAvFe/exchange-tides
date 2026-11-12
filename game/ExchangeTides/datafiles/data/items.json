@@ -224,5 +224,152 @@
   "kind": "quest",
   "effect": "contraband_seizure(-50%)",
   "desc": "Signed by Lieutenant Hale. Customs officers wave you through more often."
+ },
+ {
+  "id": "caked_powder",
+  "name": "Caked Powder Cask",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Salvage from the Resolute, branded with a hammer over a wave. It crumbles like wet sand."
+ },
+ {
+  "id": "copied_page",
+  "name": "Copied Ledger Page",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Quill's copy: six spoiled casks signed out to the Resolute by Captain S. Grimmer."
+ },
+ {
+  "id": "hammerhead_manifest",
+  "name": "The Hammerhead's Manifest",
+  "kind": "quest",
+  "effect": "combat_player_accuracy(+5)",
+  "desc": "Every cask the Hammerhead carried, and who paid for it. You know raiders' powder when you see it."
+ },
+ {
+  "id": "forged_seal",
+  "name": "Forged Customs Seal",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Struck from steel, with your mark, off a crate of raiders' muskets."
+ },
+ {
+  "id": "steel_die",
+  "name": "The Steel Die",
+  "kind": "quest",
+  "effect": "contraband_seizure(-30%)",
+  "desc": "The die Lisle cut. You can tell any forged seal from a real one now, and so can the customs men you show it to."
+ },
+ {
+  "id": "vega_letter",
+  "name": "Vega's Letter",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Marisol Vega's letter to Lieutenant Hale, sealed with the crest of a ruined house."
+ },
+ {
+  "id": "lark_log",
+  "name": "Logbook of the Lark",
+  "kind": "quest",
+  "effect": "sailing_combat_frequency(-10%)",
+  "desc": "Waterlogged, half the pages gone. Raiders give the ship that carries it a wide berth."
+ },
+ {
+  "id": "compact_ledgers",
+  "name": "The Compact Ledgers",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Eleven years of copies in your own hand: water sold at three prices, cannon sold twice."
+ },
+ {
+  "id": "spring_rights",
+  "name": "Spring Rights",
+  "kind": "quest",
+  "effect": "trade_sell_mult(+2%)",
+  "desc": "Fresh water outside the Compact. Ships pay you a little extra for a full cask."
+ },
+ {
+  "id": "contract_orders",
+  "name": "Thorne's Orders",
+  "kind": "quest",
+  "effect": "combat_enemy_accuracy(-6)",
+  "desc": "A letter of marque against free traders, under Governor Thorne's seal. Privateers who read it lose their nerve."
+ },
+ {
+  "id": "red_lantern",
+  "name": "Red Lantern",
+  "kind": "quest",
+  "effect": "sailing_storm_frequency(-15%)",
+  "desc": "Red glass and a hood to aim the beam. Kell's boats carried them. You read the coast better for having it."
+ },
+ {
+  "id": "vega_deeds",
+  "name": "House Vega Deeds",
+  "kind": "quest",
+  "effect": "trade_buy_mult(-2%)",
+  "desc": "The deeds to your family's warehouse, bought back from the creditors."
+ },
+ {
+  "id": "grimmer_offer",
+  "name": "Grimmer's Letter",
+  "kind": "quest",
+  "effect": "",
+  "desc": "An offer to restore House Vega, in a fine hand, if you stop. You kept it as evidence."
+ },
+ {
+  "id": "raider_powder",
+  "name": "Raider Powder Sample",
+  "kind": "quest",
+  "effect": "combat_player_accuracy(+3)",
+  "desc": "Fine Admiralty-grade powder, scraped out of a raider's magazine."
+ },
+ {
+  "id": "dorn_schedule",
+  "name": "Dorn's Schedule",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Where the Hammerhead anchors, month by month, in a frightened clerk's hand."
+ },
+ {
+  "id": "quill_affidavit",
+  "name": "Quill's Affidavit",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Hester Quill's sworn statement on the Ironreef ledger, witnessed and sealed."
+ },
+ {
+  "id": "brack_receipts",
+  "name": "Brack's Receipts",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Payments from Crowe & Daughters to a raider captain, in Lisle's handwriting."
+ },
+ {
+  "id": "pia_statement",
+  "name": "Pia Sorel's Statement",
+  "kind": "quest",
+  "effect": "",
+  "desc": "What a survivor of the Lark saw from the water, signed before a magistrate."
+ },
+ {
+  "id": "salary_list",
+  "name": "The Salary List",
+  "kind": "quest",
+  "effect": "",
+  "desc": "Which governors the Compact paid, how much, and on which day of the month."
+ },
+ {
+  "id": "old_chart",
+  "name": "Lanterna Chart, 1688",
+  "kind": "quest",
+  "effect": "sailing_storm_frequency(-10%)",
+  "desc": "The coast as it was the year the Morning Star went down, with the light's arc drawn in red."
+ },
+ {
+  "id": "hollis_confession",
+  "name": "Hollis Kell's Confession",
+  "kind": "quest",
+  "effect": "",
+  "desc": "An old lamp-keeper's account of the night he let the light go out, and who paid him."
  }
 ]

@@ -26,10 +26,10 @@ function npc_get(_pid, _role, _slot = "") {
 	return n;
 }
 
-function npc_roll(_pid, _role) {
+function npc_roll(_pid, _role, _female = undefined) {
 	var P = npc_parts();
 	var R = variable_struct_get(P.roles, _role);
-	var _f = (_role == "governor") ? struct_get_or(governor_of(_pid), "female", irandom(1) == 0) : (irandom(1) == 0);
+	var _f = (_female != undefined) ? _female : ((_role == "governor") ? struct_get_or(governor_of(_pid), "female", irandom(1) == 0) : (irandom(1) == 0));
 	var _hat = arr_pick(R.hats);
 	var t = {
 		head: arr_pick(P.heads) + "_" + arr_pick(P.skins),
@@ -50,6 +50,25 @@ function npc_roll(_pid, _role) {
 	if (_role == "governor") _name = governor_of(_pid).name;
 	else _name = arr_pick(_f ? P.first_f : P.first_m) + " " + arr_pick(P.last);
 	return { name: _name, role: _role, title: R.title, female: _f, t: t };
+}
+
+/// A story character without a painted portrait gets a face from the same trait layers, rolled from
+/// a fixed seed so they look the same in every game ("look": {"role", "female", "seed"} in
+/// characters.json -> npcs).
+function npc_named_person(_id) {
+	if (!variable_global_exists("NAMED_LOOKS")) global.NAMED_LOOKS = {};
+	var n = struct_get_or(global.NAMED_LOOKS, _id, undefined);
+	if (n != undefined) return n;
+	var d = struct_get_or(global.D.npcs, _id, undefined);
+	var L = (d != undefined) ? struct_get_or(d, "look", undefined) : undefined;
+	if (L == undefined) return undefined;
+	var _seed = random_get_seed();
+	random_set_seed(L.seed);
+	n = npc_roll("", L.role, struct_get_or(L, "female", false));
+	random_set_seed(_seed);
+	n.name = d.name;
+	variable_struct_set(global.NAMED_LOOKS, _id, n);
+	return n;
 }
 
 function npc_rgb(_arr, _i) { var c = _arr[_i]; return make_colour_rgb(c[0], c[1], c[2]); }
@@ -82,7 +101,11 @@ function npc_draw(_n, _x, _y, _scale = 1, _alpha = 1) {
 function npc_draw_any(_npc, _x, _y, _scale = 1, _pid = undefined) {
 	if (global.G != undefined && npc_is_local_role(_npc)) {
 		npc_draw(npc_get(_pid == undefined ? global.G.port : _pid, _npc), _x, _y, _scale);
-	} else draw_spr(npc_portrait(_npc), _x, _y, _scale);
+		return;
+	}
+	var _np = npc_named_person(_npc);
+	if (_np != undefined) npc_draw(_np, _x, _y, _scale);
+	else draw_spr(npc_portrait(_npc), _x, _y, _scale);
 }
 
 function npc_display_name(_npc, _pid = undefined) {

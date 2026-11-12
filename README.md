@@ -59,6 +59,14 @@ npx.cmd --yes @gamemaker/gm-cli@latest run .\ExchangeTides.yyp --target=windows 
 `tools/selftest.sh` builds for Linux and runs a scripted bot under Xvfb (see the script header for the libraries it
 needs). Screenshots land in `~/.config/ExchangeTides/shot_*.png`.
 
+### Release packages
+- **Linux (.deb):** `gm-cli package --target=linux --runtime=vm -o ExchangeTides-linux.zip` (needs `zip`), then
+  `tools/make_deb.sh ExchangeTides-linux.zip 1.0.0 exchange-tides_1.0.0_amd64.deb LIBROOT`. The .deb bundles the
+  OpenSSL 1.0 libraries the GameMaker runner needs and depends on `libglu1-mesa libopenal1 libpulse0`.
+  Install with `sudo apt install ./exchange-tides_1.0.0_amd64.deb`, then run `exchange-tides` or use the menu entry.
+- **Windows:** `gm-cli package --target=windows --runtime=vm -o ExchangeTides-windows.zip` (on Windows, signed in
+  with `gm-cli login <access-key>`: the guest licence cannot package Windows builds).
+
 Controls: mouse. In battle, keys `1`-`3` load special shot and clicking an enemy targets it. `Enter` closes dialogs, `Esc` goes back.
 
 ## Layout
